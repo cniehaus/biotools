@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainDlg</class>
+ <widget class="QDialog" name="MainDlg">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>601</width>
+    <height>761</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Elektronische NTW-Sammlung (KGS Rastede) (c) C. Niehaus 2009</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="0" column="0">
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <widget class="QLabel" name="label">
+       <property name="text">
+        <string>Medientyp</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QComboBox" name="klassenCombo">
+       <item>
+        <property name="text">
+         <string>DVD/CD</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Video (VHS)</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Objektträger</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Buch</string>
+        </property>
+       </item>
+      </widget>
+     </item>
+     <item>
+      <spacer name="horizontalSpacer">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+    </layout>
+   </item>
+   <item row="1" column="0">
+    <layout class="QHBoxLayout" name="horizontalLayout_2">
+     <item>
+      <widget class="QLabel" name="label_2">
+       <property name="text">
+        <string>Name:</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="name_le"/>
+     </item>
+     <item>
+      <widget class="QPushButton" name="such_knopf">
+       <property name="text">
+        <string>&amp;Suchen</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item row="2" column="0">
+    <widget class="QTableWidget" name="tabelle">
+     <row>
+      <property name="text">
+       <string>Neue Zeile</string>
+      </property>
+     </row>
+     <column>
+      <property name="text">
+       <string>Neue Spalte</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Raum</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Unterort</string>
+      </property>
+     </column>
+    </widget>
+   </item>
+   <item row="3" column="0">
+    <widget class="QPushButton" name="closeButton">
+     <property name="text">
+      <string>Close</string>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>closeButton</sender>
+   <signal>clicked()</signal>
+   <receiver>MainDlg</receiver>
+   <slot>accept()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>594</x>
+     <y>588</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>320</x>
+     <y>305</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>
