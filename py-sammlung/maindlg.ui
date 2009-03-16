@@ -24,7 +24,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QComboBox" name="klassenCombo">
+      <widget class="QComboBox" name="medienCombo">
        <item>
         <property name="text">
          <string>DVD/CD</string>

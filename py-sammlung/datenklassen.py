@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-# Copyright (c) 2008 Carsten Niehaus. All rights reserved.
+# Copyright (c) 2009 Carsten Niehaus. All rights reserved.
 # This program or module is free software: you can redistribute it and/or
 # modify it under the terms of the GNU General Public License as published
 # by the Free Software Foundation, either version 2 of the License, or
@@ -17,9 +17,9 @@ class Medium:
 		self.name = vorname + " " + nachname
 	
 	def debugInfo(self):
-		return "Name der Medium: %s" % (self.name)
+		return "Name des Mediums: %s" % (self.name)
 
-class Lehrer(Medium):
+class Objekttraeger(Medium):
 	""" Basisklasse für das Programm. Alle Infos eines Schülers
 	sind hier gespeichert. über debugInfo() erhält man einen kurzen
 	Überblick über den Schüler """
@@ -27,9 +27,9 @@ class Lehrer(Medium):
         	self.data = { "kuerzel" : kuerzel }
 
 	def debugInfo(self):
-		return "Lehrer %s (%s)." % (self.name, self.data["kuerzel"])
+		return "Objektträger %s (%s)." % (self.name, self.data["kuerzel"])
 
-class Schueler(Medium):
+class DVD(Medium):
 	""" Basisklasse für das Programm. Alle Infos eines Schülers
 	sind hier gespeichert. über debugInfo() erhält man einen kurzen
 	Überblick über den Schüler """
@@ -37,7 +37,7 @@ class Schueler(Medium):
         	self.data = {"klasse" : klasse, "nutzername" : nutzername, "passwort" : passwort, "uid" : uid  }
 
 	def debugInfo(self):
-		return "Schueler: %s aus der \t %s." % (self.name, self.data["klasse"])
+		return "DVD/CD: %s aus der \t %s." % (self.name, self.data["klasse"])
 
 class Klasse:
     def __init__(self, name, lehrer):

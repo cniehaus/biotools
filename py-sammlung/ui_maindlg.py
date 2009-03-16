@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'maindlg.ui'
 #
-# Created: Mon Mar 16 15:18:15 2009
+# Created: Mon Mar 16 15:25:11 2009
 #      by: PyQt4 UI code generator 4.4.4
 #
 # WARNING! All changes made in this file will be lost!
@@ -20,13 +20,13 @@ class Ui_MainDlg(object):
         self.label = QtGui.QLabel(MainDlg)
         self.label.setObjectName("label")
         self.horizontalLayout.addWidget(self.label)
-        self.klassenCombo = QtGui.QComboBox(MainDlg)
-        self.klassenCombo.setObjectName("klassenCombo")
-        self.klassenCombo.addItem(QtCore.QString())
-        self.klassenCombo.addItem(QtCore.QString())
-        self.klassenCombo.addItem(QtCore.QString())
-        self.klassenCombo.addItem(QtCore.QString())
-        self.horizontalLayout.addWidget(self.klassenCombo)
+        self.medienCombo = QtGui.QComboBox(MainDlg)
+        self.medienCombo.setObjectName("medienCombo")
+        self.medienCombo.addItem(QtCore.QString())
+        self.medienCombo.addItem(QtCore.QString())
+        self.medienCombo.addItem(QtCore.QString())
+        self.medienCombo.addItem(QtCore.QString())
+        self.horizontalLayout.addWidget(self.medienCombo)
         spacerItem = QtGui.QSpacerItem(40, 20, QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Minimum)
         self.horizontalLayout.addItem(spacerItem)
         self.gridLayout.addLayout(self.horizontalLayout, 0, 0, 1, 1)
@@ -66,10 +66,10 @@ class Ui_MainDlg(object):
     def retranslateUi(self, MainDlg):
         MainDlg.setWindowTitle(QtGui.QApplication.translate("MainDlg", "Elektronische NTW-Sammlung (KGS Rastede) (c) C. Niehaus 2009", None, QtGui.QApplication.UnicodeUTF8))
         self.label.setText(QtGui.QApplication.translate("MainDlg", "Medientyp", None, QtGui.QApplication.UnicodeUTF8))
-        self.klassenCombo.setItemText(0, QtGui.QApplication.translate("MainDlg", "DVD/CD", None, QtGui.QApplication.UnicodeUTF8))
-        self.klassenCombo.setItemText(1, QtGui.QApplication.translate("MainDlg", "Video (VHS)", None, QtGui.QApplication.UnicodeUTF8))
-        self.klassenCombo.setItemText(2, QtGui.QApplication.translate("MainDlg", "Objektträger", None, QtGui.QApplication.UnicodeUTF8))
-        self.klassenCombo.setItemText(3, QtGui.QApplication.translate("MainDlg", "Buch", None, QtGui.QApplication.UnicodeUTF8))
+        self.medienCombo.setItemText(0, QtGui.QApplication.translate("MainDlg", "DVD/CD", None, QtGui.QApplication.UnicodeUTF8))
+        self.medienCombo.setItemText(1, QtGui.QApplication.translate("MainDlg", "Video (VHS)", None, QtGui.QApplication.UnicodeUTF8))
+        self.medienCombo.setItemText(2, QtGui.QApplication.translate("MainDlg", "Objektträger", None, QtGui.QApplication.UnicodeUTF8))
+        self.medienCombo.setItemText(3, QtGui.QApplication.translate("MainDlg", "Buch", None, QtGui.QApplication.UnicodeUTF8))
         self.label_2.setText(QtGui.QApplication.translate("MainDlg", "Name:", None, QtGui.QApplication.UnicodeUTF8))
         self.such_knopf.setText(QtGui.QApplication.translate("MainDlg", "&Suchen", None, QtGui.QApplication.UnicodeUTF8))
         self.tabelle.verticalHeaderItem(0).setText(QtGui.QApplication.translate("MainDlg", "Neue Zeile", None, QtGui.QApplication.UnicodeUTF8))

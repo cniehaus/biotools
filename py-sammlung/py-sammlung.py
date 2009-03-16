@@ -24,7 +24,7 @@ class MainDialog(QDialog, Ui_MainDlg):
         super(MainDialog, self).__init__(parent)
         self.setupUi(self)
 
-	self.aktuelleKlasse = None
+	self.aktuelleMedium = None
 	self.klassen = [] 
 	self.schueler = [] 
 	self.klassen.append( "Alle" )
@@ -33,7 +33,7 @@ class MainDialog(QDialog, Ui_MainDlg):
 
 	self.aktuelleSchuelerListe = []
 	
-	self.connect(self.klassenCombo, SIGNAL("activated(QString)"), self.neueKlasse )
+	self.connect(self.medienCombo, SIGNAL("activated(QString)"), self.neueKlasse )
 	self.connect(self.such_knopf, SIGNAL("clicked()"), self.suchen )
 
     def suchen(self):
@@ -41,17 +41,17 @@ class MainDialog(QDialog, Ui_MainDlg):
 
     def createUi(self):
 	for k in self.klassen:
-		self.klassenCombo.addItem( k )
+		self.medienCombo.addItem( k )
     
     def neueKlasse(self, klasse):
 	print "neueKlasse mit klasse == "+klasse
 	if klasse is "Alle":
 		#Das geht nicht... Warum nur?
-		self.aktuelleKlasse = None
+		self.aktuelleMedium = None
 		print "Alle!!!!!!!!!!!!!!!!!!!"
 	else:
 		print "in der else-Schleife"
-		self.aktuelleKlasse = klasse
+		self.aktuelleMedium = klasse
 	  
 	self.updateUi()
     
@@ -63,7 +63,7 @@ class MainDialog(QDialog, Ui_MainDlg):
 
 	for s in self.schueler:
 		k = str(s.data["klasse"])
-		if k == self.aktuelleKlasse:
+		if k == self.aktuelleMedium:
 			print s.debugInfo()
 			item_vn = QTableWidgetItem( s.vorname )
 			item_nn = QTableWidgetItem( s.nachname )
@@ -104,7 +104,7 @@ class MainDialog(QDialog, Ui_MainDlg):
 		if klasse not in self.klassen:
 			self.klassen.append( klasse )
 
-		s = Schueler( nachname, vorname )
+		s = DVD( nachname, vorname )
 		s.setData( klasse, nutzername, passwort, uid )
                 self.schueler.append( s )
 
