@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'maindlg.ui'
 #
-# Created: Mon Mar 16 15:12:23 2009
+# Created: Mon Mar 16 15:18:15 2009
 #      by: PyQt4 UI code generator 4.4.4
 #
 # WARNING! All changes made in this file will be lost!

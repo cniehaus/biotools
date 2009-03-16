@@ -10,16 +10,16 @@
 # warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See
 # the GNU General Public License for more details.
 
-class Person:
+class Medium:
 	def __init__(self, nachname, vorname):
 		self.vorname = vorname
 		self.nachname = nachname
 		self.name = vorname + " " + nachname
 	
 	def debugInfo(self):
-		return "Name der Person: %s" % (self.name)
+		return "Name der Medium: %s" % (self.name)
 
-class Lehrer(Person):
+class Lehrer(Medium):
 	""" Basisklasse für das Programm. Alle Infos eines Schülers
 	sind hier gespeichert. über debugInfo() erhält man einen kurzen
 	Überblick über den Schüler """
@@ -29,7 +29,7 @@ class Lehrer(Person):
 	def debugInfo(self):
 		return "Lehrer %s (%s)." % (self.name, self.data["kuerzel"])
 
-class Schueler(Person):
+class Schueler(Medium):
 	""" Basisklasse für das Programm. Alle Infos eines Schülers
 	sind hier gespeichert. über debugInfo() erhält man einen kurzen
 	Überblick über den Schüler """

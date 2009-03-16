@@ -16,7 +16,7 @@ from PyQt4.QtCore import *
 from PyQt4.QtGui import *
 
 from ui_maindlg import Ui_MainDlg 
-from studentclasses import *
+from datenklassen import *
 
 class MainDialog(QDialog, Ui_MainDlg):
 
@@ -52,11 +52,6 @@ class MainDialog(QDialog, Ui_MainDlg):
 	else:
 		print "in der else-Schleife"
 		self.aktuelleKlasse = klasse
-#		for s in self.schueler:
-#			if s.data["klasse"] == self.aktuelleKlasse:
-#				print s.debugInfo()
-		
-		
 	  
 	self.updateUi()
     
@@ -82,7 +77,7 @@ class MainDialog(QDialog, Ui_MainDlg):
 			counter += 1
 
     def loadStudents(self):
-	""" In dieser Methode werden die Schuelerdaten geladen"""
+	""" In dieser Methode werden die Sammlungsdaten geladen"""
         
         error = None
         fh = None
@@ -111,8 +106,6 @@ class MainDialog(QDialog, Ui_MainDlg):
 
 		s = Schueler( nachname, vorname )
 		s.setData( klasse, nutzername, passwort, uid )
-                #self.schueler.append( Schueler( nachname, vorname, klasse, nutzername, \
-                #        passwort, uid ) )
                 self.schueler.append( s )
 
 
