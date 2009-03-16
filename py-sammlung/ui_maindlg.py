@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'maindlg.ui'
 #
-# Created: Mon Mar 16 19:18:16 2009
+# Created: Mon Mar 16 20:04:40 2009
 #      by: PyQt4 UI code generator 4.4.4
 #
 # WARNING! All changes made in this file will be lost!
@@ -65,9 +65,13 @@ class Ui_MainDlg(object):
         item = QtGui.QTableWidgetItem()
         self.tabelle.setHorizontalHeaderItem(2, item)
         self.gridLayout.addWidget(self.tabelle, 2, 0, 1, 1)
+        self.infolabel = QtGui.QLabel(MainDlg)
+        self.infolabel.setMinimumSize(QtCore.QSize(0, 100))
+        self.infolabel.setObjectName("infolabel")
+        self.gridLayout.addWidget(self.infolabel, 3, 0, 1, 1)
         self.closeButton = QtGui.QPushButton(MainDlg)
         self.closeButton.setObjectName("closeButton")
-        self.gridLayout.addWidget(self.closeButton, 3, 0, 1, 1)
+        self.gridLayout.addWidget(self.closeButton, 4, 0, 1, 1)
 
         self.retranslateUi(MainDlg)
         QtCore.QObject.connect(self.closeButton, QtCore.SIGNAL("clicked()"), MainDlg.accept)
@@ -89,5 +93,6 @@ class Ui_MainDlg(object):
         self.tabelle.horizontalHeaderItem(0).setText(QtGui.QApplication.translate("MainDlg", "Neue Spalte", None, QtGui.QApplication.UnicodeUTF8))
         self.tabelle.horizontalHeaderItem(1).setText(QtGui.QApplication.translate("MainDlg", "Raum", None, QtGui.QApplication.UnicodeUTF8))
         self.tabelle.horizontalHeaderItem(2).setText(QtGui.QApplication.translate("MainDlg", "Unterort", None, QtGui.QApplication.UnicodeUTF8))
+        self.infolabel.setText(QtGui.QApplication.translate("MainDlg", "Informationen über das aktuelle Objekt", None, QtGui.QApplication.UnicodeUTF8))
         self.closeButton.setText(QtGui.QApplication.translate("MainDlg", "Close", None, QtGui.QApplication.UnicodeUTF8))
 

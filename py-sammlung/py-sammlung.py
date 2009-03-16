@@ -35,9 +35,18 @@ class MainDialog(QDialog, Ui_MainDlg):
 	
 	self.connect(self.medienCombo, SIGNAL("activated(QString)"), self.neueKlasse )
 	self.connect(self.such_knopf, SIGNAL("clicked()"), self.suchen )
+	self.connect(self.tabelle, SIGNAL ("itemActivated(QTableWidgetItem*)"), self.itemAngeklickt )
+
+    def itemAngeklickt(self, item):
+	print "itemAngeklickt"
+	print item
 
     def suchen(self):
 	print "Suche "+self.name_le.text()
+	for medium in self.medien:
+		if self.name_le.text() in medium.data.values():
+			print "GEFUNDEN"
+			print medium
 
     def createUi(self):
 	for k in self.klassen:
