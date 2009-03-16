@@ -102,8 +102,14 @@ class MainDialog(QDialog, Ui_MainDlg):
 
 		if a not in self.klassen:
 			self.klassen.append( a )
+		
+		s = None
 
-		s = Objekttraeger( a,b,c,d,e )
+		if a == "Objekttraeger":
+			s = Objekttraeger( a,b,c,d,e )
+		else:
+			s = DVD( a,b,c,d )
+			
                 self.medien.append( s )
 
 

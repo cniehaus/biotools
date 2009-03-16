@@ -35,18 +35,14 @@ class Objekttraeger(Medium):
 			self.data["bezeichnung"], self.referenznummer )
 
 class DVD(Medium):
-	def setData( self, klasse, nutzername, passwort, uid ):
-        	self.data = {"klasse" : klasse, 
-			"nutzername" : nutzername, 
-			"passwort" : passwort, 
-			"uid" : uid  
+	def __init__(self, typ, name, bezeichnung, stichworte = [], referenznummer = 0):
+		Medium.__init__(self,typ, referenznummer)
+		self.setData(name, bezeichnung)
+		self.stichworte = stichworte
+	def setData( self, name, bezeichnung ):
+        	self.data = { "name" : name,
+			"bezeichnung" : bezeichnung
 		}
 
 	def debugInfo(self):
-		return "DVD/CD: %s aus der \t %s." % (self.name, self.data["klasse"])
-
-class Klasse:
-    def __init__(self, name, lehrer):
-	self.data = { "name" : name, 
-		"lehrer" : lehrer 
-	}
+		return "DVD/CD: %s \t %s." % ( self.data["name"], self.data["bezeichnung"] )
