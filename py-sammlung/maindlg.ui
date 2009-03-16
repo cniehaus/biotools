@@ -24,28 +24,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QComboBox" name="medienCombo">
-       <item>
-        <property name="text">
-         <string>DVD/CD</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Video (VHS)</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Objektträger</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Buch</string>
-        </property>
-       </item>
-      </widget>
+      <widget class="QComboBox" name="medienCombo"/>
      </item>
      <item>
       <spacer name="horizontalSpacer">
@@ -85,6 +64,41 @@
    </item>
    <item row="2" column="0">
     <widget class="QTableWidget" name="tabelle">
+     <row>
+      <property name="text">
+       <string>Neue Zeile</string>
+      </property>
+     </row>
+     <row>
+      <property name="text">
+       <string>Neue Zeile</string>
+      </property>
+     </row>
+     <row>
+      <property name="text">
+       <string>Neue Zeile</string>
+      </property>
+     </row>
+     <row>
+      <property name="text">
+       <string>Neue Zeile</string>
+      </property>
+     </row>
+     <row>
+      <property name="text">
+       <string>Neue Zeile</string>
+      </property>
+     </row>
+     <row>
+      <property name="text">
+       <string>Neue Zeile</string>
+      </property>
+     </row>
+     <row>
+      <property name="text">
+       <string>Neue Zeile</string>
+      </property>
+     </row>
      <row>
       <property name="text">
        <string>Neue Zeile</string>

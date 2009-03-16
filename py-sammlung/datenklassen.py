@@ -20,17 +20,15 @@ class Medium:
 
 class Objekttraeger(Medium):
 	def __init__(self, typ, name, bezeichnung, beschreibung, referenznummer = 0):
-		print "def Objekttraeger.__init__"
 		Medium.__init__(self,typ, referenznummer)
 		self.setData(name, bezeichnung, beschreibung)
 
 	def setData( self, name, bezeichnung, beschreibung ):
-		print "Objekttraeger.setData()"
         	self.data = { "name" : name,
 			"bezeichnung" : bezeichnung,
 			"beschreibung" : beschreibung
 		}
-		self.debugInfo()
+		#self.debugInfo()
 
 	def debugInfo(self):
 		print "=== debug: %s == %s ==  %s ==  %s == %s" % (self.typ , self.data["name"], self.data["beschreibung"], 

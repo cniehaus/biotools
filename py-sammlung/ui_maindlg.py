@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'maindlg.ui'
 #
-# Created: Mon Mar 16 15:25:11 2009
+# Created: Mon Mar 16 19:18:16 2009
 #      by: PyQt4 UI code generator 4.4.4
 #
 # WARNING! All changes made in this file will be lost!
@@ -22,10 +22,6 @@ class Ui_MainDlg(object):
         self.horizontalLayout.addWidget(self.label)
         self.medienCombo = QtGui.QComboBox(MainDlg)
         self.medienCombo.setObjectName("medienCombo")
-        self.medienCombo.addItem(QtCore.QString())
-        self.medienCombo.addItem(QtCore.QString())
-        self.medienCombo.addItem(QtCore.QString())
-        self.medienCombo.addItem(QtCore.QString())
         self.horizontalLayout.addWidget(self.medienCombo)
         spacerItem = QtGui.QSpacerItem(40, 20, QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Minimum)
         self.horizontalLayout.addItem(spacerItem)
@@ -45,9 +41,23 @@ class Ui_MainDlg(object):
         self.tabelle = QtGui.QTableWidget(MainDlg)
         self.tabelle.setObjectName("tabelle")
         self.tabelle.setColumnCount(3)
-        self.tabelle.setRowCount(1)
+        self.tabelle.setRowCount(8)
         item = QtGui.QTableWidgetItem()
         self.tabelle.setVerticalHeaderItem(0, item)
+        item = QtGui.QTableWidgetItem()
+        self.tabelle.setVerticalHeaderItem(1, item)
+        item = QtGui.QTableWidgetItem()
+        self.tabelle.setVerticalHeaderItem(2, item)
+        item = QtGui.QTableWidgetItem()
+        self.tabelle.setVerticalHeaderItem(3, item)
+        item = QtGui.QTableWidgetItem()
+        self.tabelle.setVerticalHeaderItem(4, item)
+        item = QtGui.QTableWidgetItem()
+        self.tabelle.setVerticalHeaderItem(5, item)
+        item = QtGui.QTableWidgetItem()
+        self.tabelle.setVerticalHeaderItem(6, item)
+        item = QtGui.QTableWidgetItem()
+        self.tabelle.setVerticalHeaderItem(7, item)
         item = QtGui.QTableWidgetItem()
         self.tabelle.setHorizontalHeaderItem(0, item)
         item = QtGui.QTableWidgetItem()
@@ -66,13 +76,16 @@ class Ui_MainDlg(object):
     def retranslateUi(self, MainDlg):
         MainDlg.setWindowTitle(QtGui.QApplication.translate("MainDlg", "Elektronische NTW-Sammlung (KGS Rastede) (c) C. Niehaus 2009", None, QtGui.QApplication.UnicodeUTF8))
         self.label.setText(QtGui.QApplication.translate("MainDlg", "Medientyp", None, QtGui.QApplication.UnicodeUTF8))
-        self.medienCombo.setItemText(0, QtGui.QApplication.translate("MainDlg", "DVD/CD", None, QtGui.QApplication.UnicodeUTF8))
-        self.medienCombo.setItemText(1, QtGui.QApplication.translate("MainDlg", "Video (VHS)", None, QtGui.QApplication.UnicodeUTF8))
-        self.medienCombo.setItemText(2, QtGui.QApplication.translate("MainDlg", "Objektträger", None, QtGui.QApplication.UnicodeUTF8))
-        self.medienCombo.setItemText(3, QtGui.QApplication.translate("MainDlg", "Buch", None, QtGui.QApplication.UnicodeUTF8))
         self.label_2.setText(QtGui.QApplication.translate("MainDlg", "Name:", None, QtGui.QApplication.UnicodeUTF8))
         self.such_knopf.setText(QtGui.QApplication.translate("MainDlg", "&Suchen", None, QtGui.QApplication.UnicodeUTF8))
         self.tabelle.verticalHeaderItem(0).setText(QtGui.QApplication.translate("MainDlg", "Neue Zeile", None, QtGui.QApplication.UnicodeUTF8))
+        self.tabelle.verticalHeaderItem(1).setText(QtGui.QApplication.translate("MainDlg", "Neue Zeile", None, QtGui.QApplication.UnicodeUTF8))
+        self.tabelle.verticalHeaderItem(2).setText(QtGui.QApplication.translate("MainDlg", "Neue Zeile", None, QtGui.QApplication.UnicodeUTF8))
+        self.tabelle.verticalHeaderItem(3).setText(QtGui.QApplication.translate("MainDlg", "Neue Zeile", None, QtGui.QApplication.UnicodeUTF8))
+        self.tabelle.verticalHeaderItem(4).setText(QtGui.QApplication.translate("MainDlg", "Neue Zeile", None, QtGui.QApplication.UnicodeUTF8))
+        self.tabelle.verticalHeaderItem(5).setText(QtGui.QApplication.translate("MainDlg", "Neue Zeile", None, QtGui.QApplication.UnicodeUTF8))
+        self.tabelle.verticalHeaderItem(6).setText(QtGui.QApplication.translate("MainDlg", "Neue Zeile", None, QtGui.QApplication.UnicodeUTF8))
+        self.tabelle.verticalHeaderItem(7).setText(QtGui.QApplication.translate("MainDlg", "Neue Zeile", None, QtGui.QApplication.UnicodeUTF8))
         self.tabelle.horizontalHeaderItem(0).setText(QtGui.QApplication.translate("MainDlg", "Neue Spalte", None, QtGui.QApplication.UnicodeUTF8))
         self.tabelle.horizontalHeaderItem(1).setText(QtGui.QApplication.translate("MainDlg", "Raum", None, QtGui.QApplication.UnicodeUTF8))
         self.tabelle.horizontalHeaderItem(2).setText(QtGui.QApplication.translate("MainDlg", "Unterort", None, QtGui.QApplication.UnicodeUTF8))

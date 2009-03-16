@@ -26,9 +26,9 @@ class MainDialog(QDialog, Ui_MainDlg):
 
 	self.aktuelleMedium = None
 	self.klassen = [] 
-	self.schueler = [] 
+	self.medien = [] 
 	self.klassen.append( "Alle" )
-	self.loadStudents()
+	self.loadMedia()
 	self.createUi()
 
 	self.aktuelleSchuelerListe = []
@@ -44,15 +44,12 @@ class MainDialog(QDialog, Ui_MainDlg):
 		self.medienCombo.addItem( k )
     
     def neueKlasse(self, klasse):
-	print "neueKlasse mit klasse == "+klasse
-	if klasse is "Alle":
-		#Das geht nicht... Warum nur?
+	if klasse == "Alle":
 		self.aktuelleMedium = None
-		print "Alle!!!!!!!!!!!!!!!!!!!"
 	else:
-		print "in der else-Schleife"
 		self.aktuelleMedium = klasse
 	  
+	print "das aktuelle Medium ist nun %s." % self.aktuelleMedium
 	self.updateUi()
     
     def updateUi(self):
@@ -61,22 +58,22 @@ class MainDialog(QDialog, Ui_MainDlg):
 	# Ein einfacher Zähler
 	counter = 0
 
-	for s in self.schueler:
-		k = str(s.data["klasse"])
+	self.tabelle.clear()
+
+	for s in self.medien:
+		k = s.typ
 		if k == self.aktuelleMedium:
-			print s.debugInfo()
-			item_vn = QTableWidgetItem( s.vorname )
-			item_nn = QTableWidgetItem( s.nachname )
-			item_un = QTableWidgetItem( s.data[ "nutzername" ] )
-			item_pw = QTableWidgetItem( s.data[ "passwort" ] )
+			#print s.debugInfo()
+			item_vn = QTableWidgetItem( s.typ )
+			item_nn = QTableWidgetItem( s.referenznummer )
+			item_un = QTableWidgetItem( s.data[ "name" ] )
 			self.tabelle.setItem( counter, 0 , item_vn )
 			self.tabelle.setItem( counter, 1 , item_nn )
 			self.tabelle.setItem( counter, 2 , item_un )
-			self.tabelle.setItem( counter, 3 , item_pw )
 			
 			counter += 1
 
-    def loadStudents(self):
+    def loadMedia(self):
 	""" In dieser Methode werden die Sammlungsdaten geladen"""
         
         error = None
@@ -103,11 +100,11 @@ class MainDialog(QDialog, Ui_MainDlg):
                 f = content[5]
                 g = content[6]
 
-#		if a not in self.klassen:
-#			self.klassen.append( a )
+		if a not in self.klassen:
+			self.klassen.append( a )
 
 		s = Objekttraeger( a,b,c,d,e )
-                self.schueler.append( s )
+                self.medien.append( s )
 
 
         except (IOError, OSError, ValueError), e:
