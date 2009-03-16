@@ -90,22 +90,23 @@ class MainDialog(QDialog, Ui_MainDlg):
                 raise IOError, unicode(fh.errorString())
             stream = QTextStream(fh)
 
+	    print "starte die while not Schleife"
             while not stream.atEnd():
                 line = stream.readLine()
                 lino += 1
                 content = line.split(";")
-                nutzername = content[0]
-                passwort = content[1]
-                uid = content[2]
-                vorname = content[3]
-                nachname = content[4]
-                klasse = content[5]
+                a = content[0]
+                b = content[1]
+                c = content[2]
+                d = content[3]
+                e = content[4]
+                f = content[5]
+                g = content[6]
 
-		if klasse not in self.klassen:
-			self.klassen.append( klasse )
+#		if a not in self.klassen:
+#			self.klassen.append( a )
 
-		s = DVD( nachname, vorname )
-		s.setData( klasse, nutzername, passwort, uid )
+		s = Objekttraeger( a,b,c,d,e )
                 self.schueler.append( s )
 
 

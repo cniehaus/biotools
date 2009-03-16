@@ -11,34 +11,44 @@
 # the GNU General Public License for more details.
 
 class Medium:
-	def __init__(self, nachname, vorname):
-		self.vorname = vorname
-		self.nachname = nachname
-		self.name = vorname + " " + nachname
+	def __init__(self, typ, referenznummer = ""):
+		self.typ = typ
+		self.referenznummer = referenznummer
 	
 	def debugInfo(self):
-		return "Name des Mediums: %s" % (self.name)
+		return "Medium: %s (Typ %s)" % (self.referenznummer, self.typ)
 
 class Objekttraeger(Medium):
-	""" Basisklasse für das Programm. Alle Infos eines Schülers
-	sind hier gespeichert. über debugInfo() erhält man einen kurzen
-	Überblick über den Schüler """
-	def setData( self, kuerzel ):
-        	self.data = { "kuerzel" : kuerzel }
+	def __init__(self, typ, name, bezeichnung, beschreibung, referenznummer = 0):
+		print "def Objekttraeger.__init__"
+		Medium.__init__(self,typ, referenznummer)
+		self.setData(name, bezeichnung, beschreibung)
+
+	def setData( self, name, bezeichnung, beschreibung ):
+		print "Objekttraeger.setData()"
+        	self.data = { "name" : name,
+			"bezeichnung" : bezeichnung,
+			"beschreibung" : beschreibung
+		}
+		self.debugInfo()
 
 	def debugInfo(self):
-		return "Objektträger %s (%s)." % (self.name, self.data["kuerzel"])
+		print "=== debug: %s == %s ==  %s ==  %s == %s" % (self.typ , self.data["name"], self.data["beschreibung"], 
+			self.data["bezeichnung"], self.referenznummer )
 
 class DVD(Medium):
-	""" Basisklasse für das Programm. Alle Infos eines Schülers
-	sind hier gespeichert. über debugInfo() erhält man einen kurzen
-	Überblick über den Schüler """
 	def setData( self, klasse, nutzername, passwort, uid ):
-        	self.data = {"klasse" : klasse, "nutzername" : nutzername, "passwort" : passwort, "uid" : uid  }
+        	self.data = {"klasse" : klasse, 
+			"nutzername" : nutzername, 
+			"passwort" : passwort, 
+			"uid" : uid  
+		}
 
 	def debugInfo(self):
 		return "DVD/CD: %s aus der \t %s." % (self.name, self.data["klasse"])
 
 class Klasse:
     def __init__(self, name, lehrer):
-	self.data = { "name" : name, "lehrer" : lehrer }
+	self.data = { "name" : name, 
+		"lehrer" : lehrer 
+	}
