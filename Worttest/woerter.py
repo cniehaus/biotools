@@ -19,6 +19,8 @@ from ui_maindlg import Ui_MainDlg
 from ui_wortdialog import Ui_WortDialog 
 
 class AufdeckenDialog(QDialog, Ui_WortDialog):
+'''Dieser Dialog zeigt die Wörter der aktuellen Kategorie an, 
+damit die Schüler diese mit ihrem Ergebnis vergleichen können'''
 
     def __init__(self, parent=None, liste = []):
         super(AufdeckenDialog, self).__init__(parent)
@@ -27,9 +29,11 @@ class AufdeckenDialog(QDialog, Ui_WortDialog):
 	self.fill()
 
     def fill(self):
+	'''Das QTableWidget erhält nun die Wörter'''
 	x = 0
 	y = 0
 	self.tableWidget.setColumnCount( 4 )
+	# Berechnen, wie viele Zeilen benötigt werden.
 	self.tableWidget.setRowCount( math.ceil ( len(self.liste) / 4.0 ) )
 	
 	for w in self.liste:
@@ -41,9 +45,12 @@ class AufdeckenDialog(QDialog, Ui_WortDialog):
 		if x > 3:
 			y += 1
 			x = 0
+
+	# optimale Breite
 	self.tableWidget.resizeColumnsToContents()
 
 class MainDialog(QDialog, Ui_MainDlg):
+'''Hauptdialog'''
 
     def __init__(self, parent=None):
         super(MainDialog, self).__init__(parent)
@@ -75,7 +82,7 @@ class MainDialog(QDialog, Ui_MainDlg):
 		self.running = False
 
     def laden(self):
-	# Katalog festlegen
+	'''Verbereitung der Daten'''
 	katalogname = self.combo.currentText()
 	print "Lade Katalog %s" % katalogname
 
