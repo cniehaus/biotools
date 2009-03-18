@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-# Copyright (c) 2008 Carsten Niehaus. All rights reserved.
+# Copyright (c) 2008-2009 Carsten Niehaus. All rights reserved.
 # This program or module is free software: you can redistribute it and/or
 # modify it under the terms of the GNU General Public License as published
 # by the Free Software Foundation, either version 2 of the License, or
@@ -35,6 +35,7 @@ class MainDialog(QDialog, Ui_MainDlg):
 	
 	self.connect(self.klassenCombo, SIGNAL("activated(QString)"), self.neueKlasse )
 	self.connect(self.such_knopf, SIGNAL("clicked()"), self.suchen )
+	self.connect(self.verdeckenCheckBox, SIGNAL("clicked()"), self.updateUi )
 
     def suchen(self):
 	print "Suche "+self.name_le.text()
@@ -53,28 +54,41 @@ class MainDialog(QDialog, Ui_MainDlg):
 		print "in der else-Schleife"
 		self.aktuelleKlasse = klasse
 		
-		
-	  
 	self.updateUi()
     
     def updateUi(self):
 	""" Diese Methode baut die Oberfläche neu auf. """
+	self.tabelle.clear()
 	
 	# Ein einfacher Zähler
 	counter = 0
 
 	for s in self.schueler:
 		k = str(s.data["klasse"])
-		if k == self.aktuelleKlasse:
+		if k == self.aktuelleKlasse or k == self.aktuelleKlasse:
 			print s.debugInfo()
+			item_kl = QTableWidgetItem( s.data["klasse"] )
 			item_vn = QTableWidgetItem( s.vorname )
 			item_nn = QTableWidgetItem( s.nachname )
 			item_un = QTableWidgetItem( s.data[ "nutzername" ] )
 			item_pw = QTableWidgetItem( s.data[ "passwort" ] )
-			self.tabelle.setItem( counter, 0 , item_vn )
-			self.tabelle.setItem( counter, 1 , item_nn )
-			self.tabelle.setItem( counter, 2 , item_un )
-			self.tabelle.setItem( counter, 3 , item_pw )
+
+			# Nun bekommt jede Zelle einen passenden Tooltip verpasst
+			item_nn.setToolTip( s.toolTipString() )
+			item_kl.setToolTip( s.toolTipString() )
+			item_vn.setToolTip( s.toolTipString() )
+			item_un.setToolTip( s.toolTipString() )
+			item_pw.setToolTip( s.toolTipString() )
+			
+			self.tabelle.setItem( counter, 0 , item_kl )
+			self.tabelle.setItem( counter, 1 , item_vn )
+			self.tabelle.setItem( counter, 2 , item_nn )
+			if not self.verdeckenCheckBox.isChecked():
+				self.tabelle.setItem( counter, 3 , item_un )
+				self.tabelle.setItem( counter, 4 , item_pw )
+			else:
+				self.tabelle.setItem( counter, 3, QTableWidgetItem( "verdeckt" ) )
+				self.tabelle.setItem( counter, 4, QTableWidgetItem( "verdeckt" ) )
 			
 			counter += 1
 

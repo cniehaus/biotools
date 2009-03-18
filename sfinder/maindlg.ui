@@ -37,9 +37,9 @@
     </spacer>
    </item>
    <item row="0" column="3" >
-    <widget class="QCheckBox" name="checkBox" >
+    <widget class="QCheckBox" name="verdeckenCheckBox" >
      <property name="text" >
-      <string>alle Schüler anzeigen</string>
+      <string>Sensible Daten nur als Tooltip zeigen</string>
      </property>
     </widget>
    </item>

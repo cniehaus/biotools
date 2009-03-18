@@ -38,4 +38,12 @@ class Schueler(Person):
 
 	def debugInfo(self):
 		return "Schueler: %s aus der \t %s." % (self.name, self.data["klasse"])
+	
+	def toolTipString(self):
+		'''Gibt die drei wichtigsten Eigenschaften eines Schülers zurück:
+			* Name
+			* Benutzername
+			* Passwort
+		'''
+		return "<html><body><b>Name:</b> %s<br /> <b>Nutzername:</b> \t%s<br /><b>Passwort:</b>\t%s</body></html>" % (self.name, self.data["nutzername"], self.data["passwort"] )
 
