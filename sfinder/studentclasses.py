@@ -10,7 +10,7 @@
 # warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See
 # the GNU General Public License for more details.
 
-class Person:
+class Person(object):
 	def __init__(self, nachname, vorname):
 		self.vorname = vorname
 		self.nachname = nachname
@@ -39,6 +39,3 @@ class Schueler(Person):
 	def debugInfo(self):
 		return "Schueler: %s aus der \t %s." % (self.name, self.data["klasse"])
 
-class Klasse:
-    def __init__(self, name, lehrer):
-	self.data = { "name" : name, "lehrer" : lehrer }

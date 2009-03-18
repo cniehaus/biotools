@@ -52,9 +52,6 @@ class MainDialog(QDialog, Ui_MainDlg):
 	else:
 		print "in der else-Schleife"
 		self.aktuelleKlasse = klasse
-#		for s in self.schueler:
-#			if s.data["klasse"] == self.aktuelleKlasse:
-#				print s.debugInfo()
 		
 		
 	  
