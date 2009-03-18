@@ -10,7 +10,7 @@
 # warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See
 # the GNU General Public License for more details.
 
-class Medium:
+class Medium(object):
 	def __init__(self, typ, referenznummer = ""):
 		self.typ = typ
 		self.referenznummer = referenznummer
