@@ -31,8 +31,6 @@ class MainDialog(QDialog, Ui_MainDlg):
 	self.loadStudents()
 	self.createUi()
 
-	self.aktuelleSchuelerListe = []
-	
 	self.connect(self.klassenCombo, SIGNAL("activated(QString)"), self.neueKlasse )
 	self.connect(self.such_knopf, SIGNAL("clicked()"), self.suchen )
 	self.connect(self.verdeckenCheckBox, SIGNAL("clicked()"), self.updateUi )
@@ -56,41 +54,60 @@ class MainDialog(QDialog, Ui_MainDlg):
 		
 	self.updateUi()
     
-    def updateUi(self):
-	""" Diese Methode baut die Oberfläche neu auf. """
-	self.tabelle.clear()
+    def schuelerListeErstellen(self):
+	''' Diese Methode stelle die zur Zeit passende Liste an Schülern zusammen.
+	Wenn 'Alle' ausgewählt sind, so gibt sie sofort die gesamte Schülerschaft
+	zurück, ansonsten geht sie durch die Schüler durch und stellt eine Liste 
+	zusammen, die sie schließlich zurückgibt (return)'''
+	if self.aktuelleKlasse == "Alle":
+		return self.schueler
 	
-	# Ein einfacher Zähler
-	counter = 0
+	liste = [] 
 
 	for s in self.schueler:
 		k = str(s.data["klasse"])
-		if k == self.aktuelleKlasse or k == self.aktuelleKlasse:
-			print s.debugInfo()
-			item_kl = QTableWidgetItem( s.data["klasse"] )
-			item_vn = QTableWidgetItem( s.vorname )
-			item_nn = QTableWidgetItem( s.nachname )
-			item_un = QTableWidgetItem( s.data[ "nutzername" ] )
-			item_pw = QTableWidgetItem( s.data[ "passwort" ] )
+		if k == self.aktuelleKlasse:
+			liste.append(s)
 
-			# Nun bekommt jede Zelle einen passenden Tooltip verpasst
-			item_nn.setToolTip( s.toolTipString() )
-			item_kl.setToolTip( s.toolTipString() )
-			item_vn.setToolTip( s.toolTipString() )
-			item_un.setToolTip( s.toolTipString() )
-			item_pw.setToolTip( s.toolTipString() )
+	return liste
 			
-			self.tabelle.setItem( counter, 0 , item_kl )
-			self.tabelle.setItem( counter, 1 , item_vn )
-			self.tabelle.setItem( counter, 2 , item_nn )
-			if not self.verdeckenCheckBox.isChecked():
-				self.tabelle.setItem( counter, 3 , item_un )
-				self.tabelle.setItem( counter, 4 , item_pw )
-			else:
-				self.tabelle.setItem( counter, 3, QTableWidgetItem( "verdeckt" ) )
-				self.tabelle.setItem( counter, 4, QTableWidgetItem( "verdeckt" ) )
-			
-			counter += 1
+    def updateUi(self):
+	""" Diese Methode baut die Oberfläche neu auf. """
+	# Ich finde keine schlauere Methode, um alle Zellen eines QTableWidgets zu löschen
+	while self.tabelle.rowCount() > 0:
+		self.tabelle.removeRow(0)
+
+	# Ein einfacher Zähler
+	counter = 0
+
+	for s in self.schuelerListeErstellen():
+		# Da die Tabelle keine Zeilen hat muss ich pro Schüler eine neue Zeile erzeugen
+		self.tabelle.insertRow(counter)
+		print s.debugInfo()
+		item_kl = QTableWidgetItem( s.data["klasse"] )
+		item_vn = QTableWidgetItem( s.vorname )
+		item_nn = QTableWidgetItem( s.nachname )
+		item_un = QTableWidgetItem( s.data[ "nutzername" ] )
+		item_pw = QTableWidgetItem( s.data[ "passwort" ] )
+
+		# Nun bekommt jede Zelle einen passenden Tooltip verpasst
+		item_nn.setToolTip( s.toolTipString() )
+		item_kl.setToolTip( s.toolTipString() )
+		item_vn.setToolTip( s.toolTipString() )
+		item_un.setToolTip( s.toolTipString() )
+		item_pw.setToolTip( s.toolTipString() )
+
+		self.tabelle.setItem( counter, 0 , item_kl )
+		self.tabelle.setItem( counter, 1 , item_vn )
+		self.tabelle.setItem( counter, 2 , item_nn )
+		if not self.verdeckenCheckBox.isChecked():
+			self.tabelle.setItem( counter, 3 , item_un )
+			self.tabelle.setItem( counter, 4 , item_pw )
+		else:
+			self.tabelle.setItem( counter, 3, QTableWidgetItem( "verdeckt" ) )
+			self.tabelle.setItem( counter, 4, QTableWidgetItem( "verdeckt" ) )
+
+		counter += 1
 
     def loadStudents(self):
 	""" In dieser Methode werden die Schuelerdaten geladen"""

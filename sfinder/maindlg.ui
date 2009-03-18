@@ -1,7 +1,8 @@
-<ui version="4.0" >
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
  <class>MainDlg</class>
- <widget class="QDialog" name="MainDlg" >
-  <property name="geometry" >
+ <widget class="QDialog" name="MainDlg">
+  <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
@@ -9,26 +10,26 @@
     <height>495</height>
    </rect>
   </property>
-  <property name="windowTitle" >
+  <property name="windowTitle">
    <string>Passwort-Finder (KGS Rastede)</string>
   </property>
-  <layout class="QGridLayout" name="gridLayout" >
-   <item row="0" column="0" >
-    <widget class="QLabel" name="label" >
-     <property name="text" >
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="0" column="0">
+    <widget class="QLabel" name="label">
+     <property name="text">
       <string>Klasse:</string>
      </property>
     </widget>
    </item>
-   <item row="0" column="1" >
-    <widget class="QComboBox" name="klassenCombo" />
+   <item row="0" column="1">
+    <widget class="QComboBox" name="klassenCombo"/>
    </item>
-   <item row="0" column="2" >
-    <spacer name="horizontalSpacer" >
-     <property name="orientation" >
+   <item row="0" column="2">
+    <spacer name="horizontalSpacer">
+     <property name="orientation">
       <enum>Qt::Horizontal</enum>
      </property>
-     <property name="sizeHint" stdset="0" >
+     <property name="sizeHint" stdset="0">
       <size>
        <width>270</width>
        <height>17</height>
@@ -36,206 +37,66 @@
      </property>
     </spacer>
    </item>
-   <item row="0" column="3" >
-    <widget class="QCheckBox" name="verdeckenCheckBox" >
-     <property name="text" >
+   <item row="0" column="3">
+    <widget class="QCheckBox" name="verdeckenCheckBox">
+     <property name="text">
       <string>Sensible Daten nur als Tooltip zeigen</string>
      </property>
     </widget>
    </item>
-   <item row="1" column="0" colspan="4" >
-    <layout class="QHBoxLayout" name="horizontalLayout_2" >
+   <item row="1" column="0" colspan="4">
+    <layout class="QHBoxLayout" name="horizontalLayout_2">
      <item>
-      <widget class="QLabel" name="label_2" >
-       <property name="text" >
+      <widget class="QLabel" name="label_2">
+       <property name="text">
         <string>Name:</string>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QLineEdit" name="name_le" />
+      <widget class="QLineEdit" name="name_le"/>
      </item>
      <item>
-      <widget class="QPushButton" name="such_knopf" >
-       <property name="text" >
+      <widget class="QPushButton" name="such_knopf">
+       <property name="text">
         <string>&amp;Suchen</string>
        </property>
       </widget>
      </item>
     </layout>
    </item>
-   <item row="2" column="0" colspan="4" >
-    <widget class="QTableWidget" name="tabelle" >
-     <row>
-      <property name="text" >
-       <string>Neue Zeile</string>
-      </property>
-     </row>
-     <row>
-      <property name="text" >
-       <string>Neue Zeile</string>
-      </property>
-     </row>
-     <row>
-      <property name="text" >
-       <string>Neue Zeile</string>
-      </property>
-     </row>
-     <row>
-      <property name="text" >
-       <string>Neue Zeile</string>
-      </property>
-     </row>
-     <row>
-      <property name="text" >
-       <string>Neue Zeile</string>
-      </property>
-     </row>
-     <row>
-      <property name="text" >
-       <string>Neue Zeile</string>
-      </property>
-     </row>
-     <row>
-      <property name="text" >
-       <string>Neue Zeile</string>
-      </property>
-     </row>
-     <row>
-      <property name="text" >
-       <string>Neue Zeile</string>
-      </property>
-     </row>
-     <row>
-      <property name="text" >
-       <string>Neue Zeile</string>
-      </property>
-     </row>
-     <row>
-      <property name="text" >
-       <string>Neue Zeile</string>
-      </property>
-     </row>
-     <row>
-      <property name="text" >
-       <string>Neue Zeile</string>
-      </property>
-     </row>
-     <row>
-      <property name="text" >
-       <string>Neue Zeile</string>
-      </property>
-     </row>
-     <row>
-      <property name="text" >
-       <string>Neue Zeile</string>
-      </property>
-     </row>
-     <row>
-      <property name="text" >
-       <string>Neue Zeile</string>
-      </property>
-     </row>
-     <row>
-      <property name="text" >
-       <string>Neue Zeile</string>
-      </property>
-     </row>
-     <row>
-      <property name="text" >
-       <string>Neue Zeile</string>
-      </property>
-     </row>
-     <row>
-      <property name="text" >
-       <string>Neue Zeile</string>
-      </property>
-     </row>
-     <row>
-      <property name="text" >
-       <string>Neue Zeile</string>
-      </property>
-     </row>
-     <row>
-      <property name="text" >
-       <string>Neue Zeile</string>
-      </property>
-     </row>
-     <row>
-      <property name="text" >
-       <string>Neue Zeile</string>
-      </property>
-     </row>
-     <row>
-      <property name="text" >
-       <string>Neue Zeile</string>
-      </property>
-     </row>
-     <row>
-      <property name="text" >
-       <string>Neue Zeile</string>
-      </property>
-     </row>
-     <row>
-      <property name="text" >
-       <string>Neue Zeile</string>
-      </property>
-     </row>
-     <row>
-      <property name="text" >
-       <string>Neue Zeile</string>
-      </property>
-     </row>
-     <row>
-      <property name="text" >
-       <string>Neue Zeile</string>
-      </property>
-     </row>
-     <row>
-      <property name="text" >
-       <string>Neue Zeile</string>
-      </property>
-     </row>
-     <row>
-      <property name="text" >
-       <string>Neue Zeile</string>
-      </property>
-     </row>
-     <row>
-      <property name="text" >
-       <string>Neue Zeile</string>
-      </property>
-     </row>
+   <item row="2" column="0" colspan="4">
+    <widget class="QTableWidget" name="tabelle">
      <column>
-      <property name="text" >
+      <property name="text">
        <string>Klasse</string>
       </property>
      </column>
      <column>
-      <property name="text" >
+      <property name="text">
        <string>Vorname</string>
       </property>
      </column>
      <column>
-      <property name="text" >
+      <property name="text">
        <string>Nachname</string>
       </property>
      </column>
      <column>
-      <property name="text" >
+      <property name="text">
        <string>Nutzername</string>
       </property>
      </column>
      <column>
-      <property name="text" >
+      <property name="text">
        <string>Passwort</string>
       </property>
      </column>
     </widget>
    </item>
-   <item row="3" column="0" colspan="4" >
-    <widget class="QPushButton" name="closeButton" >
-     <property name="text" >
+   <item row="3" column="0" colspan="4">
+    <widget class="QPushButton" name="closeButton">
+     <property name="text">
       <string>Close</string>
      </property>
     </widget>
@@ -250,11 +111,11 @@
    <receiver>MainDlg</receiver>
    <slot>accept()</slot>
    <hints>
-    <hint type="sourcelabel" >
+    <hint type="sourcelabel">
      <x>594</x>
      <y>588</y>
     </hint>
-    <hint type="destinationlabel" >
+    <hint type="destinationlabel">
      <x>320</x>
      <y>305</y>
     </hint>
