@@ -51,27 +51,44 @@ class MainDialog(QDialog, Ui_MainDlg):
 	  
 	print "das aktuelle Medium ist nun %s." % self.aktuelleMedium
 	self.updateUi()
+
+    def medienListeErstellen(self):
+	if self.aktuelleMedium == "Alle":
+		print "------------------------------- Alles zurückgeben --------------------__"
+		return self.medien
+	
+	liste = [] 
+
+	for medium in self.medien:
+		typ = medium.typ
+		if typ == self.aktuelleMedium:
+			liste.append( medium )
+
+	return liste
+		
     
     def updateUi(self):
 	""" Diese Methode baut die Oberfläche neu auf. """
+	# Ich finde keine schlauere Methode, um alle Zellen eines QTableWidgets zu löschen
+	while self.tabelle.rowCount() > 0:
+		self.tabelle.removeRow(0)
 	
 	# Ein einfacher Zähler
 	counter = 0
 
 	self.tabelle.clear()
 
-	for s in self.medien:
-		k = s.typ
-		if k == self.aktuelleMedium:
-			#print s.debugInfo()
-			item_vn = QTableWidgetItem( s.typ )
-			item_nn = QTableWidgetItem( s.referenznummer )
-			item_un = QTableWidgetItem( s.data[ "name" ] )
-			self.tabelle.setItem( counter, 0 , item_vn )
-			self.tabelle.setItem( counter, 1 , item_nn )
-			self.tabelle.setItem( counter, 2 , item_un )
-			
-			counter += 1
+	for medium in self.medienListeErstellen():
+		self.tabelle.insertRow(counter)
+		#print s.debugInfo()
+		item_vn = QTableWidgetItem( medium.typ )
+		item_nn = QTableWidgetItem( medium.referenznummer )
+		item_un = QTableWidgetItem( medium.data[ "name" ] )
+		self.tabelle.setItem( counter, 0 , item_vn )
+		self.tabelle.setItem( counter, 1 , item_nn )
+		self.tabelle.setItem( counter, 2 , item_un )
+		
+		counter += 1
 
     def loadMedia(self):
 	""" In dieser Methode werden die Sammlungsdaten geladen"""

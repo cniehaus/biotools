@@ -64,46 +64,6 @@
    </item>
    <item row="2" column="0">
     <widget class="QTableWidget" name="tabelle">
-     <row>
-      <property name="text">
-       <string>Neue Zeile</string>
-      </property>
-     </row>
-     <row>
-      <property name="text">
-       <string>Neue Zeile</string>
-      </property>
-     </row>
-     <row>
-      <property name="text">
-       <string>Neue Zeile</string>
-      </property>
-     </row>
-     <row>
-      <property name="text">
-       <string>Neue Zeile</string>
-      </property>
-     </row>
-     <row>
-      <property name="text">
-       <string>Neue Zeile</string>
-      </property>
-     </row>
-     <row>
-      <property name="text">
-       <string>Neue Zeile</string>
-      </property>
-     </row>
-     <row>
-      <property name="text">
-       <string>Neue Zeile</string>
-      </property>
-     </row>
-     <row>
-      <property name="text">
-       <string>Neue Zeile</string>
-      </property>
-     </row>
      <column>
       <property name="text">
        <string>Neue Spalte</string>
