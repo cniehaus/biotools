@@ -61,7 +61,7 @@ class MainDialog(QDialog, Ui_MainDlg):
 	liste = [] 
 
 	for s in self.schueler:
-		k = str(s.data["klasse"])
+		k = s.data["klasse"]
 		if k == self.aktuelleKlasse:
 			liste.append(s)
 
