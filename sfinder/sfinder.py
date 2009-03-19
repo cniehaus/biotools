@@ -134,7 +134,7 @@ class MainDialog(QDialog, Ui_MainDlg):
 			self.klassen.append( klasse )
 
 		s = Schueler( nachname, vorname )
-		s.setData( klasse, nutzername, passwort, uid )
+		s.setData( nachname, vorname, klasse, nutzername, passwort, uid )
                 #self.schueler.append( Schueler( nachname, vorname, klasse, nutzername, \
                 #        passwort, uid ) )
                 self.schueler.append( s )
