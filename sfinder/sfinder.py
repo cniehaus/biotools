@@ -43,13 +43,9 @@ class MainDialog(QDialog, Ui_MainDlg):
 		self.klassenCombo.addItem( k )
     
     def neueKlasse(self, klasse):
-	print "neueKlasse mit klasse == "+klasse
-	if klasse is "Alle":
-		#Das geht nicht... Warum nur?
+	if self.klassenCombo.currentIndex() == 0:
 		self.aktuelleKlasse = None
-		print "Alle!!!!!!!!!!!!!!!!!!!"
 	else:
-		print "in der else-Schleife"
 		self.aktuelleKlasse = klasse
 		
 	self.updateUi()
@@ -59,7 +55,7 @@ class MainDialog(QDialog, Ui_MainDlg):
 	Wenn 'Alle' ausgewählt sind, so gibt sie sofort die gesamte Schülerschaft
 	zurück, ansonsten geht sie durch die Schüler durch und stellt eine Liste 
 	zusammen, die sie schließlich zurückgibt (return)'''
-	if self.aktuelleKlasse == "Alle":
+	if self.aktuelleKlasse == None:
 		return self.schueler
 	
 	liste = [] 
