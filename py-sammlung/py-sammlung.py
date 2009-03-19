@@ -44,7 +44,7 @@ class MainDialog(QDialog, Ui_MainDlg):
 		self.medienCombo.addItem( k )
     
     def neueKlasse(self, klasse):
-	if klasse == "Alle":
+	if self.medienCombo.currentIndex() == 0:
 		self.aktuelleMedium = None
 	else:
 		self.aktuelleMedium = klasse
@@ -53,7 +53,7 @@ class MainDialog(QDialog, Ui_MainDlg):
 	self.updateUi()
 
     def medienListeErstellen(self):
-	if self.aktuelleMedium == "Alle":
+	if self.aktuelleMedium == None:
 		print "------------------------------- Alles zurückgeben --------------------__"
 		return self.medien
 	
