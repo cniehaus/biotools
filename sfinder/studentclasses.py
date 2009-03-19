@@ -18,26 +18,26 @@ class Person(object):
 	
 	def debugInfo(self):
 		return "Name der Person: %s" % (self.name)
-
-class Lehrer(Person):
-	""" Basisklasse für das Programm. Alle Infos eines Schülers
-	sind hier gespeichert. über debugInfo() erhält man einen kurzen
-	Überblick über den Schüler """
-	def setData( self, kuerzel ):
-        	self.data = { "kuerzel" : kuerzel }
-
-	def debugInfo(self):
-		return "Lehrer %s (%s)." % (self.name, self.data["kuerzel"])
+		
+		
 
 class Schueler(Person):
 	""" Basisklasse für das Programm. Alle Infos eines Schülers
 	sind hier gespeichert. über debugInfo() erhält man einen kurzen
 	Überblick über den Schüler """
-	def setData( self, klasse, nutzername, passwort, uid ):
-        	self.data = {"klasse" : klasse, "nutzername" : nutzername, "passwort" : passwort, "uid" : uid  }
+	def setData( self, nachname, vorname, klasse, nutzername, passwort, uid ):
+        	self.data = {"nachname" : nachname, "vorname": vorname, "klasse" : klasse, "nutzername" : nutzername, "passwort" : passwort, "uid" : uid  }
 
 	def debugInfo(self):
 		return "Schueler: %s aus der \t %s." % (self.name, self.data["klasse"])
+	
+	def hatDatensatz(self, suche):
+		for item in self.data.itervalues():
+			print "Item: %s mit suche: %s" % (item, suche)
+			if item == suche:
+				return True
+		
+		return False
 	
 	def toolTipString(self):
 		'''Gibt die drei wichtigsten Eigenschaften eines Schülers zurück:
