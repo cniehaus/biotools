@@ -24,126 +24,124 @@ class MainDialog(QDialog, Ui_MainDlg):
         super(MainDialog, self).__init__(parent)
         self.setupUi(self)
 
-	self.aktuelleKlasse = None
-	self.klassen = [] 
-	self.schueler = [] 
-	self.klassen.append( "Alle" )
-	self.loadStudents()
-	self.createUi()
+        self.aktuelleKlasse = None
+        self.klassen = [] 
+        self.schueler = [] 
+        self.klassen.append( "Alle" )
+        self.loadStudents()
+        self.createUi()
 
-	self.connect(self.klassenCombo, SIGNAL("activated(QString)"), self.neueKlasse )
-	self.connect(self.such_knopf, SIGNAL("clicked()"), self.suchen )
-	self.connect(self.verdeckenCheckBox, SIGNAL("clicked()"), self.updateUi )
+        self.connect(self.klassenCombo, SIGNAL("activated(QString)"), self.neueKlasse )
+        self.connect(self.such_knopf, SIGNAL("clicked()"), self.suchen )
+        self.connect(self.verdeckenCheckBox, SIGNAL("clicked()"), self.updateUi )
 
     def suchen(self):
-	print "Suche "+self.name_le.text()
+       print "Suche "+self.name_le.text()
 
     def createUi(self):
-	for k in self.klassen:
-		self.klassenCombo.addItem( k )
-    
+       for k in self.klassen:
+               self.klassenCombo.addItem( k )
+
     def neueKlasse(self, klasse):
-	if self.klassenCombo.currentIndex() == 0:
-		self.aktuelleKlasse = None
-	else:
-		self.aktuelleKlasse = klasse
-		
-	self.updateUi()
-    
+       if self.klassenCombo.currentIndex() == 0:
+               self.aktuelleKlasse = None
+       else:
+               self.aktuelleKlasse = klasse
+       self.updateUi()
+
     def schuelerListeErstellen(self):
-	''' Diese Methode stelle die zur Zeit passende Liste an Schülern zusammen.
-	Wenn 'Alle' ausgewählt sind, so gibt sie sofort die gesamte Schülerschaft
-	zurück, ansonsten geht sie durch die Schüler durch und stellt eine Liste 
-	zusammen, die sie schließlich zurückgibt (return)'''
-	if self.aktuelleKlasse == None:
-		return self.schueler
-	
-	liste = [] 
+        ''' Diese Methode stelle die zur Zeit passende Liste an Schülern zusammen.
+        Wenn 'Alle' ausgewählt sind, so gibt sie sofort die gesamte Schülerschaft
+        zurück, ansonsten geht sie durch die Schüler durch und stellt eine Liste 
+        zusammen, die sie schließlich zurückgibt (return)'''
+        if self.aktuelleKlasse == None:
+            return self.schueler
 
-	for s in self.schueler:
-		k = s.data["klasse"]
-		if k == self.aktuelleKlasse:
-			liste.append(s)
+        liste = [] 
 
-	return liste
-			
+        for s in self.schueler:
+                k = s.data["klasse"]
+                if k == self.aktuelleKlasse:
+                        liste.append(s)
+
+        return liste
+
     def updateUi(self):
-	""" Diese Methode baut die Oberfläche neu auf. """
-	# Ich finde keine schlauere Methode, um alle Zellen eines QTableWidgets zu löschen
-	while self.tabelle.rowCount() > 0:
-		self.tabelle.removeRow(0)
+        """ Diese Methode baut die Oberfläche neu auf. """
+        # Ich finde keine schlauere Methode, um alle Zellen eines QTableWidgets zu löschen
+        while self.tabelle.rowCount() > 0:
+                self.tabelle.removeRow(0)
 
-	# Ein einfacher Zähler
-	counter = 0
+        # Ein einfacher Zähler
+        counter = 0
 
-	for s in self.schuelerListeErstellen():
-		# Da die Tabelle keine Zeilen hat muss ich pro Schüler eine neue Zeile erzeugen
-		self.tabelle.insertRow(counter)
-		print s.debugInfo()
-		item_kl = QTableWidgetItem( s.data["klasse"] )
-		item_vn = QTableWidgetItem( s.vorname )
-		item_nn = QTableWidgetItem( s.nachname )
-		item_un = QTableWidgetItem( s.data[ "nutzername" ] )
-		item_pw = QTableWidgetItem( s.data[ "passwort" ] )
+        for s in self.schuelerListeErstellen():
+                # Da die Tabelle keine Zeilen hat muss ich pro Schüler eine neue Zeile erzeugen
+                self.tabelle.insertRow(counter)
+                print s.debugInfo()
+                item_kl = QTableWidgetItem( s.data["klasse"] )
+                item_vn = QTableWidgetItem( s.vorname )
+                item_nn = QTableWidgetItem( s.nachname )
+                item_un = QTableWidgetItem( s.data[ "nutzername" ] )
+                item_pw = QTableWidgetItem( s.data[ "passwort" ] )
 
-		# Nun bekommt jede Zelle einen passenden Tooltip verpasst
-		item_nn.setToolTip( s.toolTipString() )
-		item_kl.setToolTip( s.toolTipString() )
-		item_vn.setToolTip( s.toolTipString() )
-		item_un.setToolTip( s.toolTipString() )
-		item_pw.setToolTip( s.toolTipString() )
+                # Nun bekommt jede Zelle einen passenden Tooltip verpasst
+                item_nn.setToolTip( s.toolTipString() )
+                item_kl.setToolTip( s.toolTipString() )
+                item_vn.setToolTip( s.toolTipString() )
+                item_un.setToolTip( s.toolTipString() )
+                item_pw.setToolTip( s.toolTipString() )
 
-		self.tabelle.setItem( counter, 0 , item_kl )
-		self.tabelle.setItem( counter, 1 , item_vn )
-		self.tabelle.setItem( counter, 2 , item_nn )
-		if not self.verdeckenCheckBox.isChecked():
-			self.tabelle.setItem( counter, 3 , item_un )
-			self.tabelle.setItem( counter, 4 , item_pw )
-		else:
-			self.tabelle.setItem( counter, 3, QTableWidgetItem( "verdeckt" ) )
-			self.tabelle.setItem( counter, 4, QTableWidgetItem( "verdeckt" ) )
+                self.tabelle.setItem( counter, 0 , item_kl )
+                self.tabelle.setItem( counter, 1 , item_vn )
+                self.tabelle.setItem( counter, 2 , item_nn )
+                if not self.verdeckenCheckBox.isChecked():
+                        self.tabelle.setItem( counter, 3 , item_un )
+                        self.tabelle.setItem( counter, 4 , item_pw )
+                else:
+                        self.tabelle.setItem( counter, 3, QTableWidgetItem( "verdeckt" ) )
+                        self.tabelle.setItem( counter, 4, QTableWidgetItem( "verdeckt" ) )
 
-		counter += 1
+                counter += 1
 
     def loadStudents(self):
-	""" In dieser Methode werden die Schuelerdaten geladen"""
-        
+        """ In dieser Methode werden die Schuelerdaten geladen"""
+
         error = None
         fh = None
 
         try:
-            filename = "daten.csv"
-            fh = QFile( filename )
-            lino = 0
-            if not fh.open(QIODevice.ReadOnly):
-                raise IOError, unicode(fh.errorString())
-            stream = QTextStream(fh)
+                filename = "daten.csv"
+                fh = QFile( filename )
+                lino = 0
+                if not fh.open(QIODevice.ReadOnly):
+                        raise IOError, unicode(fh.errorString())
+                stream = QTextStream(fh)
 
-            while not stream.atEnd():
-                line = stream.readLine()
-                lino += 1
-                content = line.split(";")
-                nutzername = content[0]
-                passwort = content[1]
-                uid = content[2]
-                vorname = content[3]
-                nachname = content[4]
-                klasse = content[5]
+                while not stream.atEnd():
+                    line = stream.readLine()
+                    lino += 1
+                    content = line.split(";")
+                    nutzername = content[0]
+                    passwort = content[1]
+                    uid = content[2]
+                    vorname = content[3]
+                    nachname = content[4]
+                    klasse = content[5]
 
-		if klasse not in self.klassen:
-			self.klassen.append( klasse )
+                    if klasse not in self.klassen:
+                        self.klassen.append( klasse )
 
-		s = Schueler( nachname, vorname )
-		s.setData( nachname, vorname, klasse, nutzername, passwort, uid )
-                #self.schueler.append( Schueler( nachname, vorname, klasse, nutzername, \
-                #        passwort, uid ) )
-                self.schueler.append( s )
-
+                    s = Schueler( nachname, vorname )
+                    s.setData( nachname, vorname, klasse, nutzername, passwort, uid )
+                    #self.schueler.append( Schueler( nachname, vorname, klasse, nutzername, \
+                                #        passwort, uid ) )
+                    self.schueler.append( s )
 
         except (IOError, OSError, ValueError), e:
-            error = "Failed to load: %s on line %d" % (e, lino)
+                error = "Failed to load: %s on line %d" % (e, lino)
 
-
+# =========================== Nun wird das Programm ausgeführt ==================== 
 if __name__ == "__main__":
     import sys
 
