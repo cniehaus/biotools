@@ -80,8 +80,8 @@ class MainDialog(QDialog, Ui_MainDlg):
                 self.tabelle.insertRow(counter)
                 print s.debugInfo()
                 item_kl = QTableWidgetItem( s.data["klasse"] )
-                item_vn = QTableWidgetItem( s.vorname )
-                item_nn = QTableWidgetItem( s.nachname )
+                item_vn = QTableWidgetItem( s.data["vorname"] )
+                item_nn = QTableWidgetItem( s.data["nachname"] )
                 item_un = QTableWidgetItem( s.data[ "nutzername" ] )
                 item_pw = QTableWidgetItem( s.data[ "passwort" ] )
 
@@ -132,7 +132,7 @@ class MainDialog(QDialog, Ui_MainDlg):
                     if klasse not in self.klassen:
                         self.klassen.append( klasse )
 
-                    s = Schueler( nachname, vorname )
+                    s = Schueler()
                     s.setData( nachname, vorname, klasse, nutzername, passwort, uid )
                     #self.schueler.append( Schueler( nachname, vorname, klasse, nutzername, \
                                 #        passwort, uid ) )

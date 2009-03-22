@@ -10,16 +10,7 @@
 # warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See
 # the GNU General Public License for more details.
 
-class Person(object):
-        def __init__(self, nachname, vorname):
-                self.vorname = vorname
-                self.nachname = nachname
-                self.name = vorname + " " + nachname
-
-        def debugInfo(self):
-                return "Name der Person: %s" % (self.name)
-
-class Schueler(Person):
+class Schueler(object):
         """ Basisklasse für das Programm. Alle Infos eines Schülers
         sind hier gespeichert. über debugInfo() erhält man einen kurzen
         Überblick über den Schüler """
@@ -27,7 +18,7 @@ class Schueler(Person):
                 self.data = {"nachname" : nachname, "vorname": vorname, "klasse" : klasse, "nutzername" : nutzername, "passwort" : passwort, "uid" : uid  }
 
         def debugInfo(self):
-                return "Schueler: %s aus der \t %s." % (self.name, self.data["klasse"])
+                return "Schueler: %s %s aus der \t %s." % (self.data["vorname"], self.data["nachname"], self.data["klasse"])
 
         def hatDatensatz(self, suche):
                 for item in self.data.itervalues():
@@ -43,5 +34,5 @@ class Schueler(Person):
                         * Benutzername
                         * Passwort
                 '''
-                return "<html><body><b>Name:</b> %s<br /> <b>Nutzername:</b> \t%s<br /><b>Passwort:</b>\t%s</body></html>" % (self.name, self.data["nutzername"], self.data["passwort"] )
+                return "<html><body><b>Name:</b> %s %s<br /> <b>Nutzername:</b> \t%s<br /><b>Passwort:</b>\t%s</body></html>" % (self.data["vorname"], self.data["nachname"], self.data["nutzername"], self.data["passwort"] )
 
