@@ -11,39 +11,37 @@
 # the GNU General Public License for more details.
 
 class Person(object):
-	def __init__(self, nachname, vorname):
-		self.vorname = vorname
-		self.nachname = nachname
-		self.name = vorname + " " + nachname
-	
-	def debugInfo(self):
-		return "Name der Person: %s" % (self.name)
-		
-		
+        def __init__(self, nachname, vorname):
+                self.vorname = vorname
+                self.nachname = nachname
+                self.name = vorname + " " + nachname
+
+        def debugInfo(self):
+                return "Name der Person: %s" % (self.name)
 
 class Schueler(Person):
-	""" Basisklasse für das Programm. Alle Infos eines Schülers
-	sind hier gespeichert. über debugInfo() erhält man einen kurzen
-	Überblick über den Schüler """
-	def setData( self, nachname, vorname, klasse, nutzername, passwort, uid ):
-        	self.data = {"nachname" : nachname, "vorname": vorname, "klasse" : klasse, "nutzername" : nutzername, "passwort" : passwort, "uid" : uid  }
+        """ Basisklasse für das Programm. Alle Infos eines Schülers
+        sind hier gespeichert. über debugInfo() erhält man einen kurzen
+        Überblick über den Schüler """
+        def setData( self, nachname, vorname, klasse, nutzername, passwort, uid ):
+                self.data = {"nachname" : nachname, "vorname": vorname, "klasse" : klasse, "nutzername" : nutzername, "passwort" : passwort, "uid" : uid  }
 
-	def debugInfo(self):
-		return "Schueler: %s aus der \t %s." % (self.name, self.data["klasse"])
-	
-	def hatDatensatz(self, suche):
-		for item in self.data.itervalues():
-			print "Item: %s mit suche: %s" % (item, suche)
-			if item == suche:
-				return True
-		
-		return False
-	
-	def toolTipString(self):
-		'''Gibt die drei wichtigsten Eigenschaften eines Schülers zurück:
-			* Name
-			* Benutzername
-			* Passwort
-		'''
-		return "<html><body><b>Name:</b> %s<br /> <b>Nutzername:</b> \t%s<br /><b>Passwort:</b>\t%s</body></html>" % (self.name, self.data["nutzername"], self.data["passwort"] )
+        def debugInfo(self):
+                return "Schueler: %s aus der \t %s." % (self.name, self.data["klasse"])
+
+        def hatDatensatz(self, suche):
+                for item in self.data.itervalues():
+                        print "Item: %s mit suche: %s" % (item, suche)
+                        if item == suche:
+                                return True
+
+                return False
+
+        def toolTipString(self):
+                '''Gibt die drei wichtigsten Eigenschaften eines Schülers zurück:
+                        * Name
+                        * Benutzername
+                        * Passwort
+                '''
+                return "<html><body><b>Name:</b> %s<br /> <b>Nutzername:</b> \t%s<br /><b>Passwort:</b>\t%s</body></html>" % (self.name, self.data["nutzername"], self.data["passwort"] )
 
