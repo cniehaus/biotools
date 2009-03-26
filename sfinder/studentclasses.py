@@ -20,10 +20,13 @@ class Schueler(object):
         def debugInfo(self):
                 return "Schueler: %s %s aus der \t %s." % (self.data["vorname"], self.data["nachname"], self.data["klasse"])
 
+        def name(self):
+			return "%s %s" % ( self.data["vorname"], self.data["nachname"] )
+		
         def hatDatensatz(self, suche):
                 for item in self.data.itervalues():
-                        print "Item: %s mit suche: %s" % (item, suche)
-                        if item == suche:
+                        #print "Item: %s mit suche: %s" % (item, suche)
+                        if item.contains(suche):
                                 return True
 
                 return False

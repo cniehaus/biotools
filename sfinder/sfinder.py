@@ -36,11 +36,14 @@ class MainDialog(QDialog, Ui_MainDlg):
         self.connect(self.verdeckenCheckBox, SIGNAL("clicked()"), self.updateUi )
 
     def suchen(self):
-       print "Suche "+self.name_le.text()
-
+        name = self.name_le.text()
+        for s in self.schuelerListeErstellen():
+            if s.hatDatensatz(name):
+                print s.name()
+                
     def createUi(self):
-       for k in self.klassen:
-               self.klassenCombo.addItem( k )
+        for k in self.klassen:
+            self.klassenCombo.addItem( k )
 
     def neueKlasse(self, klasse):
        if self.klassenCombo.currentIndex() == 0:
@@ -54,6 +57,7 @@ class MainDialog(QDialog, Ui_MainDlg):
         Wenn 'Alle' ausgewählt sind, so gibt sie sofort die gesamte Schülerschaft
         zurück, ansonsten geht sie durch die Schüler durch und stellt eine Liste 
         zusammen, die sie schließlich zurückgibt (return)'''
+        
         if self.aktuelleKlasse == None:
             return self.schueler
 

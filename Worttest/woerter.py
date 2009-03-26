@@ -19,8 +19,8 @@ from ui_maindlg import Ui_MainDlg
 from ui_wortdialog import Ui_WortDialog 
 
 class AufdeckenDialog(QDialog, Ui_WortDialog):
-'''Dieser Dialog zeigt die Wörter der aktuellen Kategorie an, 
-damit die Schüler diese mit ihrem Ergebnis vergleichen können'''
+    '''Dieser Dialog zeigt die Wörter der aktuellen Kategorie an, 
+    damit die Schüler diese mit ihrem Ergebnis vergleichen können'''
 
     def __init__(self, parent=None, liste = []):
         super(AufdeckenDialog, self).__init__(parent)
@@ -50,7 +50,7 @@ damit die Schüler diese mit ihrem Ergebnis vergleichen können'''
 	self.tableWidget.resizeColumnsToContents()
 
 class MainDialog(QDialog, Ui_MainDlg):
-'''Hauptdialog'''
+    '''Hauptdialog'''
 
     def __init__(self, parent=None):
         super(MainDialog, self).__init__(parent)
