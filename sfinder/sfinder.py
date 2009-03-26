@@ -42,7 +42,8 @@ class MainDialog(QDialog, Ui_MainDlg):
         #Erzeuge die Oberfläche
         self.createUi()
 
-        
+        # mit "connect" verbindet man Methoden einer Klasse mit den Signalen 
+        # eines Objekts. Das ist nicht pythonspezifisch, sondern commit durch Qt.
         self.connect(self.klassenCombo, SIGNAL("activated(QString)"), self.neueKlasse )
         self.connect(self.such_knopf, SIGNAL("clicked()"), self.suchen )
         self.connect(self.verdeckenCheckBox, SIGNAL("clicked()"), self.updateUi )
@@ -50,9 +51,15 @@ class MainDialog(QDialog, Ui_MainDlg):
     def suchen(self):
         '''Sucht den im Suchfeld gesuchten Schüler'''
         name = self.name_le.text()
+        fundliste = []
         for s in self.schuelerListeErstellen():
             if s.hatDatensatz(name):
                 print s.name()
+                fundliste.append(s)
+        
+        # Da nun die passenden Schüler gefunden wurden muss mit
+        # dieser Liste die Tabelle neu aufgebaut werden.
+        self.updateUi(fundliste)
                 
     def createUi(self):
         '''Für jede Klasse wird ein String an die QComboBox angefügt.'''
@@ -86,8 +93,9 @@ class MainDialog(QDialog, Ui_MainDlg):
 
         return liste
 
-    def updateUi(self):
+    def updateUi(self, schuelerListe = None):
         '''Diese Methode baut die Oberfläche neu auf.'''
+        
         # Ich finde keine schlauere Methode, um alle Zellen eines QTableWidgets zu löschen
         # Daher muss ich die Tabelle zeilenweise löschen
         while self.tabelle.rowCount() > 0:
@@ -96,10 +104,20 @@ class MainDialog(QDialog, Ui_MainDlg):
         # Ein einfacher Zähler
         counter = 0
 
-        for s in self.schuelerListeErstellen():
+        # Nun muss entschieden werden, welche Liste benutzt wird:
+        # Wurde eine Liste an diese Methode übergeben, so soll die
+        # benutzt werden, ansonsten muss die Methode schuelerListeErstellen()
+        # aufgerufen werden
+        liste = []
+        if schuelerListe:
+            liste = schuelerListe
+        else:
+            liste = self.schuelerListeErstellen()
+            
+        for s in liste:
                 # Da die Tabelle keine Zeilen hat muss ich pro Schüler eine neue Zeile erzeugen
                 self.tabelle.insertRow(counter)
-                print s.debugInfo()
+                #print s.debugInfo()
                 item_kl = QTableWidgetItem( s.data["klasse"] )
                 item_vn = QTableWidgetItem( s.data["vorname"] )
                 item_nn = QTableWidgetItem( s.data["nachname"] )
@@ -155,8 +173,6 @@ class MainDialog(QDialog, Ui_MainDlg):
 
                     s = Schueler()
                     s.setData( nachname, vorname, klasse, nutzername, passwort, uid )
-                    #self.schueler.append( Schueler( nachname, vorname, klasse, nutzername, \
-                                #        passwort, uid ) )
                     self.schueler.append( s )
 
         except (IOError, OSError, ValueError), e:
