@@ -36,6 +36,7 @@ class MainDialog(QDialog, Ui_MainDlg):
         self.connect(self.verdeckenCheckBox, SIGNAL("clicked()"), self.updateUi )
 
     def suchen(self):
+        '''Sucht den im Suchfeld gesuchten Schüler'''
         name = self.name_le.text()
         for s in self.schuelerListeErstellen():
             if s.hatDatensatz(name):

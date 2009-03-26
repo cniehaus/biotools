@@ -18,12 +18,17 @@ class Schueler(object):
                 self.data = {"nachname" : nachname, "vorname": vorname, "klasse" : klasse, "nutzername" : nutzername, "passwort" : passwort, "uid" : uid  }
 
         def debugInfo(self):
-                return "Schueler: %s %s aus der \t %s." % (self.data["vorname"], self.data["nachname"], self.data["klasse"])
+            '''Gibt wesentliche Informationen über den Schüler nett formiertiert aus.'''
+            return "Schueler: %s %s aus der \t %s." % (self.data["vorname"], self.data["nachname"], self.data["klasse"])
 
         def name(self):
+            '''Gibt den nett formatierten Namen des Schülers aus'''
 			return "%s %s" % ( self.data["vorname"], self.data["nachname"] )
 		
         def hatDatensatz(self, suche):
+            '''Die Funktion gibt True zurück, wenn ein Datenfeld
+            eines Schülers den Suchwert beinhaltet. Es wird nicht
+            nach genauer Übereinstimmung gesucht!'''
                 for item in self.data.itervalues():
                         #print "Item: %s mit suche: %s" % (item, suche)
                         if item.contains(suche):
