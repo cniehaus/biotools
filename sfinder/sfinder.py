@@ -24,13 +24,25 @@ class MainDialog(QDialog, Ui_MainDlg):
         super(MainDialog, self).__init__(parent)
         self.setupUi(self)
 
+        #die aktuell vom Benutzer ausgewählte Klasse
         self.aktuelleKlasse = None
+        
+        #diese Liste enthält alle Klassen der Schule
         self.klassen = [] 
+        
+        #Pro Schüler gibt es ein Objekt, diese sind in dieser Liste gespeichert
         self.schueler = [] 
+        
+        #Füge in die QComboBox "Alle" ein für den Fall, dass nichts ausgewählt wurde
         self.klassen.append( "Alle" )
+        
+        #Lade aus der Datei alle Schüler
         self.loadStudents()
+        
+        #Erzeuge die Oberfläche
         self.createUi()
 
+        
         self.connect(self.klassenCombo, SIGNAL("activated(QString)"), self.neueKlasse )
         self.connect(self.such_knopf, SIGNAL("clicked()"), self.suchen )
         self.connect(self.verdeckenCheckBox, SIGNAL("clicked()"), self.updateUi )
@@ -43,10 +55,13 @@ class MainDialog(QDialog, Ui_MainDlg):
                 print s.name()
                 
     def createUi(self):
+        '''Für jede Klasse wird ein String an die QComboBox angefügt.'''
         for k in self.klassen:
             self.klassenCombo.addItem( k )
 
     def neueKlasse(self, klasse):
+       ''' Wenn eine Klasse neu ausgewählt wurde wird die interne
+       Variable neu belegt und die Oberfläche neu aufgebaut.'''
        if self.klassenCombo.currentIndex() == 0:
                self.aktuelleKlasse = None
        else:
@@ -72,8 +87,9 @@ class MainDialog(QDialog, Ui_MainDlg):
         return liste
 
     def updateUi(self):
-        """ Diese Methode baut die Oberfläche neu auf. """
+        '''Diese Methode baut die Oberfläche neu auf.'''
         # Ich finde keine schlauere Methode, um alle Zellen eines QTableWidgets zu löschen
+        # Daher muss ich die Tabelle zeilenweise löschen
         while self.tabelle.rowCount() > 0:
                 self.tabelle.removeRow(0)
 
@@ -110,7 +126,7 @@ class MainDialog(QDialog, Ui_MainDlg):
                 counter += 1
 
     def loadStudents(self):
-        """ In dieser Methode werden die Schuelerdaten geladen"""
+        '''In dieser Methode werden die Schuelerdaten geladen'''
 
         error = None
         fh = None

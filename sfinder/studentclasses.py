@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-# Copyright (c) 2008 Carsten Niehaus. All rights reserved.
+# Copyright (c) 2008, 2009 Carsten Niehaus. All rights reserved.
 # This program or module is free software: you can redistribute it and/or
 # modify it under the terms of the GNU General Public License as published
 # by the Free Software Foundation, either version 2 of the License, or
@@ -11,11 +11,11 @@
 # the GNU General Public License for more details.
 
 class Schueler(object):
-        """ Basisklasse für das Programm. Alle Infos eines Schülers
+        '''Basisklasse für das Programm. Alle Infos eines Schülers
         sind hier gespeichert. über debugInfo() erhält man einen kurzen
-        Überblick über den Schüler """
+        Überblick über den Schüler'''
         def setData( self, nachname, vorname, klasse, nutzername, passwort, uid ):
-                self.data = {"nachname" : nachname, "vorname": vorname, "klasse" : klasse, "nutzername" : nutzername, "passwort" : passwort, "uid" : uid  }
+            self.data = {"nachname" : nachname, "vorname": vorname, "klasse" : klasse, "nutzername" : nutzername, "passwort" : passwort, "uid" : uid  }
 
         def debugInfo(self):
             '''Gibt wesentliche Informationen über den Schüler nett formiertiert aus.'''
@@ -23,18 +23,18 @@ class Schueler(object):
 
         def name(self):
             '''Gibt den nett formatierten Namen des Schülers aus'''
-			return "%s %s" % ( self.data["vorname"], self.data["nachname"] )
+            return "%s %s" % ( self.data["vorname"], self.data["nachname"] )
 		
         def hatDatensatz(self, suche):
             '''Die Funktion gibt True zurück, wenn ein Datenfeld
             eines Schülers den Suchwert beinhaltet. Es wird nicht
             nach genauer Übereinstimmung gesucht!'''
-                for item in self.data.itervalues():
-                        #print "Item: %s mit suche: %s" % (item, suche)
-                        if item.contains(suche):
-                                return True
+            for item in self.data.itervalues():
+                    #print "Item: %s mit suche: %s" % (item, suche)
+                    if item.contains(suche):
+                            return True
 
-                return False
+            return False
 
         def toolTipString(self):
                 '''Gibt die drei wichtigsten Eigenschaften eines Schülers zurück:
