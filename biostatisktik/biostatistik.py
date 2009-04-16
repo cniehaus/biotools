@@ -24,23 +24,3 @@ def allel_frequenz( a, b ):
     return pp, pq2, qq
 
     
-class Laus(object):
-    counter = 0
-    
-    def __init__(self):
-        Laus.counter += 1
-    def __del__(self):
-        Laus.counter -= 1
-    def count_of(self):
-        print Laus.counter
-   
-    
-l1 = Laus()
-l1.count_of()
-l2 = Laus()
-l1.count_of()
-l3 = Laus()
-del l3
-l1.count_of()
-l4 = Laus()
-l1.count_of()

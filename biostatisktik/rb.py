@@ -14,6 +14,18 @@ import sys
 #        self.ui.setupUi(self)
 #
 
+class Laus(object):
+    counter = 0
+    
+    def __init__(self):
+        Laus.counter += 1
+    def __del__(self):
+        Laus.counter -= 1
+    def count_of(self):
+        print Laus.counter
+   
+ 
+
 class Spielfeld:
 	def __init__(self):
 		print "Starte das Spielfeld"
