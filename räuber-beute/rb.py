@@ -33,9 +33,6 @@ class MainDialog(QDialog, Ui_MainDlg):
 		self.connect( self.stop, SIGNAL("clicked()"), self.stoppen )
 		self.connect( self.timer, SIGNAL("timeout()"), self.zug )
 		
-	def test(self, wert):
-		print wert
-		
 	def zug(self):
 		print "start"
 		
@@ -45,8 +42,8 @@ class MainDialog(QDialog, Ui_MainDlg):
 		
 		#1: Zufallszahl erzeugen: eine für x, eine für y (x/y)
 		
-		x = random.randint(0,5)+1
-		y = random.randint(0,5)+1
+		x = random.randint(0, 5)+1
+		y = random.randint(0, 5)+1
 		
 					
 		z = (y-1)*6+x-1
@@ -86,7 +83,7 @@ class MainDialog(QDialog, Ui_MainDlg):
 				self.tierlist[z] = None
 				return
 			else:
-				print "#########################################################################"
+				print "###################################"
 				
 		
 		#4: machen
@@ -108,7 +105,10 @@ class MainDialog(QDialog, Ui_MainDlg):
 		print "Start"
 		
 	def zahlen(self):
-	#"""Diese Methode zaehlt die Teammitglieder und gibt die Anzahl an Lauusen und Marienkaefern zurueck."""
+		"""
+		Diese Methode zaehlt die Teammitglieder und gibt die 
+		Anzahl an Lauusen und Marienkaefern zurueck.
+		"""
 		l_c = 0
 		m_c = 0
 		for i in self.tierlist:
@@ -163,7 +163,7 @@ class MainDialog(QDialog, Ui_MainDlg):
 		count = 0
 		for i in self.tierlist:
 			random.seed()
-			x = random.randint(0,2)
+			x = random.randint(0, 2)
 			if x == 0:
 				self.tierlist[count] = Tier("m")
 			elif x == 1:
@@ -212,21 +212,21 @@ class MainDialog(QDialog, Ui_MainDlg):
 		self.labellist.append(self.l35)
 		self.labellist.append(self.l36)
 				
-		for i in range(0,36):
+		for i in range(0, 36):
 			self.tierlist.insert(i, None)
 	
 class Tier(object):
 	def __init__ (self, typ):
 		self.name = typ
-	
+
 	def symbol(self):
 		return self.name
-		
+
 
 if __name__ == "__main__":
-    import sys
+	import sys
 
-    app = QApplication(sys.argv)
-    form = MainDialog()
-    form.show()
-    app.exec_()
+	app = QApplication(sys.argv)
+	form = MainDialog()
+	form.show()
+	app.exec_()
