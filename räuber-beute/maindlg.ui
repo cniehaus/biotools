@@ -1,0 +1,387 @@
+<ui version="4.0" >
+ <class>MainDlg</class>
+ <widget class="QDialog" name="MainDlg" >
+  <property name="geometry" >
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>492</width>
+    <height>209</height>
+   </rect>
+  </property>
+  <property name="windowTitle" >
+   <string>Dialog</string>
+  </property>
+  <widget class="QLabel" name="label_6" >
+   <property name="geometry" >
+    <rect>
+     <x>10</x>
+     <y>10</y>
+     <width>111</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text" >
+    <string>&lt;!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd">
+&lt;html>&lt;head>&lt;meta name="qrichtext" content="1" />&lt;style type="text/css">
+p, li { white-space: pre-wrap; }
+&lt;/style>&lt;/head>&lt;body style=" font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-style:normal;">
+&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">&lt;span style=" font-size:12pt; font-weight:600;">Überschrift&lt;/span>&lt;/p>&lt;/body>&lt;/html></string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="closeButton" >
+   <property name="geometry" >
+    <rect>
+     <x>10</x>
+     <y>170</y>
+     <width>75</width>
+     <height>24</height>
+    </rect>
+   </property>
+   <property name="text" >
+    <string>Schießen</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="start" >
+   <property name="geometry" >
+    <rect>
+     <x>320</x>
+     <y>170</y>
+     <width>75</width>
+     <height>24</height>
+    </rect>
+   </property>
+   <property name="text" >
+    <string>&amp;Start</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="stop" >
+   <property name="geometry" >
+    <rect>
+     <x>400</x>
+     <y>170</y>
+     <width>75</width>
+     <height>24</height>
+    </rect>
+   </property>
+   <property name="text" >
+    <string>S&amp;top</string>
+   </property>
+  </widget>
+  <widget class="QWidget" name="layoutWidget" >
+   <property name="geometry" >
+    <rect>
+     <x>10</x>
+     <y>40</y>
+     <width>301</width>
+     <height>116</height>
+    </rect>
+   </property>
+   <layout class="QGridLayout" name="gridLayout" >
+    <item row="0" column="0" >
+     <widget class="QLabel" name="l1" >
+      <property name="text" >
+       <string/>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="1" >
+     <widget class="QLabel" name="l2" >
+      <property name="text" >
+       <string/>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="2" >
+     <widget class="QLabel" name="l3" >
+      <property name="text" >
+       <string/>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="3" >
+     <widget class="QLabel" name="l4" >
+      <property name="text" >
+       <string/>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="4" >
+     <widget class="QLabel" name="l5" >
+      <property name="text" >
+       <string/>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="5" >
+     <widget class="QLabel" name="l6" >
+      <property name="text" >
+       <string/>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="0" >
+     <widget class="QLabel" name="l7" >
+      <property name="text" >
+       <string/>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="1" >
+     <widget class="QLabel" name="l8" >
+      <property name="text" >
+       <string/>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="4" >
+     <widget class="QLabel" name="l11" >
+      <property name="text" >
+       <string/>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="5" >
+     <widget class="QLabel" name="l12" >
+      <property name="text" >
+       <string/>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="0" >
+     <widget class="QLabel" name="l13" >
+      <property name="text" >
+       <string/>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="1" >
+     <widget class="QLabel" name="l14" >
+      <property name="text" >
+       <string/>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="2" >
+     <widget class="QLabel" name="l15" >
+      <property name="text" >
+       <string/>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="3" >
+     <widget class="QLabel" name="l16" >
+      <property name="text" >
+       <string/>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="4" >
+     <widget class="QLabel" name="l17" >
+      <property name="text" >
+       <string/>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="5" >
+     <widget class="QLabel" name="l18" >
+      <property name="text" >
+       <string/>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="0" >
+     <widget class="QLabel" name="l19" >
+      <property name="text" >
+       <string/>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="1" >
+     <widget class="QLabel" name="l20" >
+      <property name="text" >
+       <string/>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="2" >
+     <widget class="QLabel" name="l21" >
+      <property name="text" >
+       <string/>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="3" >
+     <widget class="QLabel" name="l22" >
+      <property name="text" >
+       <string/>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="4" >
+     <widget class="QLabel" name="l23" >
+      <property name="text" >
+       <string/>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="5" >
+     <widget class="QLabel" name="l24" >
+      <property name="text" >
+       <string/>
+      </property>
+     </widget>
+    </item>
+    <item row="4" column="0" >
+     <widget class="QLabel" name="l25" >
+      <property name="text" >
+       <string/>
+      </property>
+     </widget>
+    </item>
+    <item row="4" column="1" >
+     <widget class="QLabel" name="l26" >
+      <property name="text" >
+       <string/>
+      </property>
+     </widget>
+    </item>
+    <item row="4" column="2" >
+     <widget class="QLabel" name="l27" >
+      <property name="text" >
+       <string/>
+      </property>
+     </widget>
+    </item>
+    <item row="4" column="3" >
+     <widget class="QLabel" name="l28" >
+      <property name="text" >
+       <string/>
+      </property>
+     </widget>
+    </item>
+    <item row="4" column="4" >
+     <widget class="QLabel" name="l29" >
+      <property name="text" >
+       <string/>
+      </property>
+     </widget>
+    </item>
+    <item row="4" column="5" >
+     <widget class="QLabel" name="l30" >
+      <property name="text" >
+       <string/>
+      </property>
+     </widget>
+    </item>
+    <item row="5" column="0" >
+     <widget class="QLabel" name="l31" >
+      <property name="text" >
+       <string/>
+      </property>
+     </widget>
+    </item>
+    <item row="5" column="1" >
+     <widget class="QLabel" name="l32" >
+      <property name="text" >
+       <string/>
+      </property>
+     </widget>
+    </item>
+    <item row="5" column="2" >
+     <widget class="QLabel" name="l33" >
+      <property name="text" >
+       <string/>
+      </property>
+     </widget>
+    </item>
+    <item row="5" column="3" >
+     <widget class="QLabel" name="l34" >
+      <property name="text" >
+       <string/>
+      </property>
+     </widget>
+    </item>
+    <item row="5" column="4" >
+     <widget class="QLabel" name="l35" >
+      <property name="text" >
+       <string/>
+      </property>
+     </widget>
+    </item>
+    <item row="5" column="5" >
+     <widget class="QLabel" name="l36" >
+      <property name="text" >
+       <string/>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="2" >
+     <widget class="QLabel" name="l9" >
+      <property name="text" >
+       <string/>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="3" >
+     <widget class="QLabel" name="l10" >
+      <property name="text" >
+       <string/>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QWidget" name="layoutWidget" >
+   <property name="geometry" >
+    <rect>
+     <x>330</x>
+     <y>40</y>
+     <width>84</width>
+     <height>54</height>
+    </rect>
+   </property>
+   <layout class="QGridLayout" name="gridLayout_2" >
+    <item row="0" column="0" >
+     <widget class="QLabel" name="label_33" >
+      <property name="text" >
+       <string>M:</string>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="1" >
+     <widget class="QLCDNumber" name="lcdNumber_m" />
+    </item>
+    <item row="1" column="0" >
+     <widget class="QLabel" name="label_36" >
+      <property name="text" >
+       <string>L:</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="1" >
+     <widget class="QLCDNumber" name="lcdNumber_l" />
+    </item>
+   </layout>
+  </widget>
+ </widget>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>closeButton</sender>
+   <signal>clicked()</signal>
+   <receiver>MainDlg</receiver>
+   <slot>accept()</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>56</x>
+     <y>182</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>171</x>
+     <y>173</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>
