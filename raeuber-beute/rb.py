@@ -107,17 +107,21 @@ class MainDialog(QDialog, Ui_MainDlg):
 	def zahlen(self):
 		"""
 		Diese Methode zaehlt die Teammitglieder und gibt die 
-		Anzahl an Lauusen und Marienkaefern zurueck.
+		Anzahl an Läusen und Marienkaefern zurueck.
 		"""
 		l_c = 0
 		m_c = 0
+#Ab hier ist ein Fehler... Warum werden die M nicht richt
+#gezählt?
 		for i in self.tierlist:
 			if not i:
 				continue
 			if i.name == "l":
-				l_c += 1
+				l_c += 1 ; print "laus"
 			elif i.name == "m":
-				m_c += 1
+				m_c += 1 ; print "käfer"
+			else: 
+				print "slkdjflköasdjflkjsdeölfjölksjdf"
 		
 		return l_c, m_c
 	
@@ -147,8 +151,8 @@ class MainDialog(QDialog, Ui_MainDlg):
 		print output_string
 		
 		
-		l_c, m_c = self.zahlen()
-		
+		l_c, m_c = self.zahlen();        print "LÄUSE: %d" % l_c;        print "KÄFER:%d " % m_c
+        
 		self.lcdNumber_l.display(l_c)
 		self.lcdNumber_m.display(m_c)
 		
