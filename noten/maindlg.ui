@@ -46,12 +46,22 @@
      <item>
       <widget class="QTabWidget" name="tabWidget">
        <property name="currentIndex">
-        <number>0</number>
+        <number>1</number>
        </property>
        <widget class="QWidget" name="tab">
         <attribute name="title">
          <string>Daten</string>
         </attribute>
+       </widget>
+       <widget class="QWidget" name="Seite_2">
+        <attribute name="title">
+         <string>Termine</string>
+        </attribute>
+        <layout class="QGridLayout" name="gridLayout_2">
+         <item row="0" column="0">
+          <widget class="QTextBrowser" name="terminWidget"/>
+         </item>
+        </layout>
        </widget>
        <widget class="QWidget" name="Seite">
         <attribute name="title">

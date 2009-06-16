@@ -14,6 +14,7 @@ import csv
 
 from PyQt4.QtCore import *
 from PyQt4.QtGui import *
+import re, datetime, calendar 
 
 from ui_maindlg import Ui_MainDlg 
 from datenklassen import *
@@ -23,8 +24,11 @@ class MainDialog(QDialog, Ui_MainDlg):
         super(MainDialog, self).__init__(parent)
         self.setupUi(self)
         self.hj = Halbjahr()
-        self.klase = Klasse( "8A3")
-        self.planung = Unterrichtsplanung()
+        self.klasse = Klasse( "8A3")                
+        self.termineAnzeigen()
+        
+    def termineAnzeigen(self):
+        self.terminWidget.setText(str(datetime.date.today()))
 
 if __name__ == "__main__":
 	import sys

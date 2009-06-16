@@ -13,6 +13,8 @@
 from PyQt4.QtCore import *
 from PyQt4.QtGui import *
 
+import re, datetime, calendar 
+
 class Halbjahr(object):
     def __init__(self):
         print "Halbjahr"
@@ -21,12 +23,15 @@ class Halbjahr(object):
         self.anfang = QDate (2009, 1,1)
         self.anfang = QDate (2009, 6,1)
 
+
 class Klasse(object):
     def __init__(self, bezeichnung = ""):
         print "Klasse"
         self.schuelerListe = []
         self.bezeichnung = bezeichnung
         self.klassenlehrer = ""
+        self.planung = Unterrichtsplanung()
+        
         # zum Testen ein paar Testdaten laden
         self.debugData()
     
@@ -54,14 +59,40 @@ class Unterrichtsplanung(object):
     def __init__(self):
         print "Unterrichtsplanung"
         self.termine = []
+        self.debugData()
+        
+        #Der Unterricht soll Montags und Freitags sein
+        self.tage = [1, 5]
         
     def debugData(self):
-        self.termine.append(Termin())
+        print "debugData in Unterrichtsplanung"
+        t1 = Termin( datetime.date(2009,  2, 5) )
+        t2 = Termin( datetime.date(2009,  2, 6) )
+        t3 = Termin( datetime.date(2009,  4, 7) )
+        t4 = Termin( datetime.date(2009,  5, 12))
+        
+        p1 = datetime.date(2009,  5, 12)
+        p2 = datetime.date(2009,  5, 13)
+        #datetime.timedelta(p1, p2)
+        
+        self.termine = [t1, t2, t3, t4]
 
 class Termin(object):
-    def __init__(self):
+    def __init__(self,  date = None):
         print "Termin"
-        self.klasse = Klasse()
         self.raum = ""
         self.fach = ""
-        self.datum = QDate()
+        self.datum = None
+        if date is not None:
+            self.setDate( date )
+    
+    def __sub__(self,  date):
+        """Ich muss den Operator überladen, damit ich Termine 
+        miteinander verrechnen kann."""
+        return self.datum - date.datum
+
+    def setDate(self,  datum):
+        print "foo"
+        print "setze Datum auf %s" % str(datum)
+        self.datum = datum
+        
