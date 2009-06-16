@@ -10,22 +10,50 @@
 # warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See
 # the GNU General Public License for more details.
 
+from PyQt4.QtCore import *
+from PyQt4.QtGui import *
+
 class Halbjahr(object):
-	def __init__(self):
-		print "Halbjahr"
+    def __init__(self):
+        print "Halbjahr"
+        self.jahr = 2009
+        self.haelfte = 1
+        self.anfang = QDate (2009, 1,1)
+        self.anfang = QDate (2009, 6,1)
 
 class Klasse(object):
-	def __init__(self):
-		print "Klasse"
+    def __init__(self, bezeichnung = ""):
+        print "Klasse"
+        self.schuelerListe = []
+        self.bezeichnung = bezeichnung
+        self.klassenlehrer = ""
+        # zum Testen ein paar Testdaten laden
+        self.debugData()
+    
+    def debugData(self):
+        self.schuelerListe.append( Schueler( "Jens",  "Test",  "m"))
+        self.schuelerListe.append( Schueler( "Michael",  "Test2",  "m"))
+        self.schuelerListe.append( Schueler( "Marion",  "Test3",  "w"))
+        
+        self.klassenlehrer = "SAE"
+
 		
 class Schueler(object):
-	def __init__(self):
-		print "Schüler"
-		
+    def __init__(self,  vorname,  name,  geschlecht):
+        print "Schüler"
+        self.weiblich = None
+        if geschlecht is "w":
+            self.weiblich = True
+        else:
+            self.weiblich = False
+            
+        self.name = name
+        self.vorname = vorname
+        
 class Unterrichtsplanung(object):
-	def __init__(self):
-		print "Unterrichtsplanung"
-		
+    def __init__(self):
+        print "Unterrichtsplanung"
+
 class Termin(object):
-	def __init__(self):
-		print "Termin"
+    def __init__(self):
+        print "Termin"

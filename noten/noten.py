@@ -19,12 +19,11 @@ from ui_maindlg import Ui_MainDlg
 from datenklassen import *
 
 class MainDialog(QDialog, Ui_MainDlg):
-	def __init__(self, parent=None):
-		super(MainDialog, self).__init__(parent)
-		self.setupUi(self)
-		#self.updateUi()
-
-
+    def __init__(self, parent=None):
+        super(MainDialog, self).__init__(parent)
+        self.setupUi(self)
+        self.hj = Halbjahr()
+        self.klase = Klasse( "8A3")
 
 if __name__ == "__main__":
 	import sys
