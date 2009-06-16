@@ -53,7 +53,15 @@ class Schueler(object):
 class Unterrichtsplanung(object):
     def __init__(self):
         print "Unterrichtsplanung"
+        self.termine = []
+        
+    def debugData(self):
+        self.termine.append(Termin())
 
 class Termin(object):
     def __init__(self):
         print "Termin"
+        self.klasse = Klasse()
+        self.raum = ""
+        self.fach = ""
+        self.datum = QDate()

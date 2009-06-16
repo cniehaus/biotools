@@ -24,6 +24,7 @@ class MainDialog(QDialog, Ui_MainDlg):
         self.setupUi(self)
         self.hj = Halbjahr()
         self.klase = Klasse( "8A3")
+        self.planung = Unterrichtsplanung()
 
 if __name__ == "__main__":
 	import sys
