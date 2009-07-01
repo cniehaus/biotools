@@ -22,10 +22,20 @@ from matplotlib.backends.backend_qt4agg import NavigationToolbar2QTAgg as Naviga
 from matplotlib.figure import Figure
 
 
+#==============================
+from ui_werkzeuge import Ui_WerkzeugForm
+
+class WerkzeugForm(QDialog, Ui_WerkzeugForm):
+	def __init__(self, parent=None):
+		print "moin moin"
+		super(WerkzeugForm, self).__init__(parent)
+		self.setupUi(self)
+#==============================
+
 class Form(QMainWindow):
     def __init__(self, parent=None):
         super(Form, self).__init__(parent)
-        self.setWindowTitle('Räuber und Beute Beziehungen')
+        self.setWindowTitle("Räuber und Beute Beziehungen")
 
         self.data = DataHolder()
         self.series_list_model = QStandardItemModel()
@@ -119,7 +129,10 @@ class Form(QMainWindow):
         self.to_spin = QSpinBox()
         self.to_spin.setMaximum(10000)
         
+        form = WerkzeugForm()
+
         spins_hbox = QHBoxLayout()
+        spins_hbox.addWidget(form)
         spins_hbox.addWidget(spin_label1)
         spins_hbox.addWidget(self.from_spin)
         spins_hbox.addWidget(spin_label2)
@@ -248,22 +261,11 @@ def main():
 
     
    
-#==============================
-from ui_werkzeuge import Ui_WerkzeugForm
-
-class WerkzeugForm(QDialog, Ui_WerkzeugForm):
-	def __init__(self, parent=None):
-		print "moin moin"
-		super(WerkzeugForm, self).__init__(parent)
-		self.setupUi(self)
-#==============================
 
 if __name__ == "__main__":
     import sys
 
     app = QApplication(sys.argv)
-    form = WerkzeugForm()
-    form.show()
     form2 = Form()
     form2.show()
     app.exec_()
