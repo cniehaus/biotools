@@ -1,16 +1,11 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
-Series of data are loaded from a .csv file, and their names are
-displayed in a checkable list view. The user can select the series
-it wants from the list and plot them on a matplotlib canvas.
+Dieses Programm dient zum Verstehen der Räuber-Beute-Beziehungen.
 
-Use the sample .csv file that comes with the script for an example
-of data series.
-
-Eli Bendersky (eliben@gmail.com)
-License: this code is in the public domain
-Last modified: 18.05.2009
+Carsten Niehaus (ni@kgs-rastede.de)
+License: GPLv2+
+Last modified: Juni und Juli 2009
 """
 import sys, os, csv
 from PyQt4.QtCore import *
@@ -35,7 +30,7 @@ class WerkzeugForm(QDialog, Ui_WerkzeugForm):
 class Form(QMainWindow):
     def __init__(self, parent=None):
         super(Form, self).__init__(parent)
-        self.setWindowTitle("Räuber und Beute Beziehungen")
+        self.setWindowTitle(u"Räuber und Beute Beziehungen")
 
         self.data = DataHolder()
         self.series_list_model = QStandardItemModel()
@@ -96,7 +91,7 @@ class Form(QMainWindow):
 
     def on_about(self):
         msg = __doc__
-        QMessageBox.about(self, "About the demo", msg.strip())
+        QMessageBox.about(self, u"Über Räuber-Beute", msg.strip())
 
     def fill_series_list(self, names):
         self.series_list_model.clear()
@@ -123,7 +118,6 @@ class Form(QMainWindow):
         
         self.tools.listView.setModel(self.series_list_model)      
      
-        #Anzeigen-Knopf        
         self.connect(self.tools.show_button, SIGNAL('clicked()'), self.on_show)
 
         left_vbox = QVBoxLayout()

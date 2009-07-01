@@ -76,5 +76,22 @@
   </layout>
  </widget>
  <resources/>
- <connections/>
+ <connections>
+  <connection>
+   <sender>legend_cb</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>show_button</receiver>
+   <slot>click()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>34</x>
+     <y>655</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>43</x>
+     <y>682</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
 </ui>
