@@ -4,7 +4,7 @@
 """
 Based on code written by AMit Kumar (Oct 01, 2006)
 
-Intrinsic rate of Prey Population Increase ;
+a = Intrinsic rate of Prey Population Increase ;
 b = Predation Rate Coefficient ;
 p = Reproduction rate of Predators ( after eating preys );
 c = Death Rate of Predators ;
