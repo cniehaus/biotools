@@ -48,8 +48,9 @@ class Form(QMainWindow):
         self.on_show()
 
     def load_file(self, filename=None):
-        filename = QFileDialog.getOpenFileName(self,
-            'Open a data file', '.', 'CSV files (*.csv);;All Files (*.*)')
+        if not filename:
+            filename = QFileDialog.getOpenFileName(self, 
+                   'Open a data file', '.', 'CSV files (*.csv);;All Files (*.*)')
         
         if filename:
             self.data.load_from_file(filename)
@@ -222,24 +223,15 @@ class DataHolder(object):
     def get_series_data(self, name):
         return self.data[name]
 
-
-#def main():
-#    app = QApplication(sys.argv)
-#    form = Form()
-#    form.show()
-#    app.exec_()
-
-
-
-    
-   
-
 if __name__ == "__main__":
     import sys
 
     app = QApplication(sys.argv)
+    
     form2 = Form()
     form2.show()
+    if len(sys.argv) > 0:
+        form2.load_file(sys.argv[1])
     app.exec_()
 
     
