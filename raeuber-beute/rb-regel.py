@@ -36,7 +36,13 @@ class PredatorPreyCalculator(object):
 
     def setP(self, p):
         self.p = p
-        
+
+    def setPrey0(self, p):
+        self.Prey0 = p
+
+    def setPredator0(self, p):
+        self.Predator0 = p
+
     def dx(self, x,y):
         return self.a*x-self.b*x*y
 

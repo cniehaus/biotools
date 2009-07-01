@@ -16,13 +16,88 @@ from matplotlib.backends.backend_qt4agg import FigureCanvasQTAgg as FigureCanvas
 from matplotlib.backends.backend_qt4agg import NavigationToolbar2QTAgg as NavigationToolbar
 from matplotlib.figure import Figure
 
+#===========================
+"""
+Based on code written by AMit Kumar (Oct 01, 2006)
+
+a = Intrinsic rate of Prey Population Increase ;
+b = Predation Rate Coefficient ;
+p = Reproduction rate of Predators ( after eating preys );
+c = Death Rate of Predators ;
+Prey0 = Initial Prey Population ;
+Predator0 = Initial Predator Population;
+dt = Time Step;
+"""
+class PredatorPreyCalculator(object):
+    def __init__(self):
+        self.a=1.0
+        self.b=0.2
+        self.p=0.04
+        self.c=0.5
+        self.Prey0=5
+        self.Predator0=2
+        self.dt=0.01
+        self.tstart=0.0
+        self.iterations=5000
+    
+    def setA(self, a):
+        print "Setze a auf " + str(a)
+        self.a = a
+        
+    def setB(self, b):
+        self.b = b
+        
+    def setC(self, c):
+        self.c = c
+
+    def setP(self, p):
+        self.p = p
+
+    def setPrey0(self, p):
+        self.Prey0 = p
+
+    def setPredator0(self, p):
+        self.Predator0 = p
+
+    def dx(self, x,y):
+        return self.a*x-self.b*x*y
+
+    def dy(self, x,y):
+        return self.p*x*y-self.c*y
+        
+    def calculate(self):
+        r_string = ["R"]
+        b_string = ["B"]
+        
+        i = 0
+        x = self.Prey0
+        y = self.Predator0
+        t = self.tstart
+    
+        while i < self.iterations:
+            t = i * self.dt
+            xnew = x + self.dx(x,y) * self.dt
+            ynew = y + self.dy(x,y) * self.dt
+            
+            x = xnew
+            y = ynew
+            
+            r_string.append(x)
+            b_string.append(y)
+            
+            i += 1
+        
+        
+            
+        return r_string, b_string
+
+
 
 #==============================
 from ui_werkzeuge import Ui_WerkzeugForm
 
 class WerkzeugForm(QDialog, Ui_WerkzeugForm):
 	def __init__(self, parent=None):
-		print "moin moin"
 		super(WerkzeugForm, self).__init__(parent)
 		self.setupUi(self)
 #==============================
@@ -34,14 +109,25 @@ class Form(QMainWindow):
 
         self.data = DataHolder()
         self.series_list_model = QStandardItemModel()
-
+        
         self.create_menu()
         self.create_main_frame()
         self.create_status_bar()
         
         self.update_ui()
         self.on_show()
+        
+    def update_values(self):
+        self.data.simulator.setA( self.tools.a.value() )
+        self.data.simulator.setB( self.tools.b.value() )
+        self.data.simulator.setC( self.tools.c.value() )
+        self.data.simulator.setP( self.tools.p.value() )
 
+    def calculate_data(self):
+        self.update_values()
+        self.data.calculate_from_values()
+        self.update_ui()
+    
     def load_file(self, filename=None):
         if not filename:
             filename = QFileDialog.getOpenFileName(self, 
@@ -66,6 +152,8 @@ class Form(QMainWindow):
                 w.setEnabled(False)
     
     def on_show(self):
+        self.calculate_data()
+        
         self.axes.clear()        
         self.axes.grid(True)
         
@@ -119,6 +207,12 @@ class Form(QMainWindow):
         self.tools.listView.setModel(self.series_list_model)      
      
         self.connect(self.tools.show_button, SIGNAL('clicked()'), self.on_show)
+        self.connect(self.tools.calculate_button, SIGNAL('clicked()'), self.calculate_data)
+        
+        self.data.calculate_from_values()
+        self.fill_series_list(self.data.series_names())
+        self.update_ui()
+
 
         left_vbox = QVBoxLayout()
         left_vbox.addWidget(self.canvas)
@@ -190,14 +284,27 @@ class DataHolder(object):
     """
     def __init__(self, filename=None):
         self.load_from_file(filename)
+        self.simulator = PredatorPreyCalculator()
+    
+    def calculate_from_values(self):
+        self.data = {}
+        self.names = ["R", "B"]
+                       
+        r, b = self.simulator.calculate()
+        
+        self.data["R"] = map(float, r[1:])
+        self.data["B"] = map(float, b[1:])
+        self.datalen = len(r[1:])
+       
+        
+        
     
     def load_from_file(self, filename=None):
         self.data = {}
-        self.names = []
+        self.names = ["R", "B"]
         
         if filename:
             for line in csv.reader(open(filename, 'rb')):
-                self.names.append(line[0])
                 self.data[line[0]] = map(float, line[1:])
                 self.datalen = len(line[1:])
     
@@ -224,7 +331,7 @@ if __name__ == "__main__":
     
     f = Form()
     f.show()
-    if len(sys.argv) > 0:
+    if len(sys.argv) > 1:
         f.load_file(sys.argv[1])
     app.exec_()
 
