@@ -228,10 +228,10 @@ if __name__ == "__main__":
 
     app = QApplication(sys.argv)
     
-    form2 = Form()
-    form2.show()
+    f = Form()
+    f.show()
     if len(sys.argv) > 0:
-        form2.load_file(sys.argv[1])
+        f.load_file(sys.argv[1])
     app.exec_()
 
     
