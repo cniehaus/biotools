@@ -59,14 +59,14 @@ class Form(QMainWindow):
     
     def update_ui(self):
         if self.data.series_count() > 0 and self.data.series_len() > 0:
-            self.from_spin.setValue(0)
-            self.to_spin.setValue(self.data.series_len() - 1)
+            self.tools.from_spin.setValue(0)
+            self.tools.to_spin.setValue(self.data.series_len() - 1)
             
-            for w in [self.from_spin, self.to_spin]:
+            for w in [self.tools.from_spin, self.tools.to_spin]:
                 w.setRange(0, self.data.series_len() - 1)
                 w.setEnabled(True)
         else:
-            for w in [self.from_spin, self.to_spin]:
+            for w in [self.tools.from_spin, self.tools.to_spin]:
                 w.setEnabled(False)
     
     def on_show(self):
@@ -84,12 +84,12 @@ class Form(QMainWindow):
             if checked:
                 has_series = True
                 
-                x_from = self.from_spin.value()
-                x_to = self.to_spin.value()
+                x_from = self.tools.from_spin.value()
+                x_to = self.tools.to_spin.value()
                 series = self.data.get_series_data(name)[x_from:x_to + 1]
                 self.axes.plot(range(len(series)), series, 'o-', label=name)
         
-        if has_series and self.legend_cb.isChecked():
+        if has_series and self.tools.legend_cb.isChecked():
             self.axes.legend()
         self.canvas.draw()
 
@@ -110,6 +110,7 @@ class Form(QMainWindow):
         self.main_frame = QWidget()
         
         plot_frame = QWidget()
+        self.tools = WerkzeugForm()
         
         self.dpi = 100
         self.fig = Figure((6.0, 4.0), dpi=self.dpi)
@@ -119,47 +120,18 @@ class Form(QMainWindow):
         self.axes = self.fig.add_subplot(111)
         self.mpl_toolbar = NavigationToolbar(self.canvas, self.main_frame)
         
-        log_label = QLabel("Data series:")
-        self.series_list_view = QListView()
-        self.series_list_view.setModel(self.series_list_model)
-        
-        spin_label1 = QLabel('X from')
-        self.from_spin = QSpinBox()
-        spin_label2 = QLabel('to')
-        self.to_spin = QSpinBox()
-        self.to_spin.setMaximum(10000)
-        
-        form = WerkzeugForm()
-
-        spins_hbox = QHBoxLayout()
-        spins_hbox.addWidget(spin_label1)
-        spins_hbox.addWidget(self.from_spin)
-        spins_hbox.addWidget(spin_label2)
-        spins_hbox.addWidget(self.to_spin)
-        spins_hbox.addStretch(1)
-        
-        self.legend_cb = QCheckBox("Show L&egend")
-        self.legend_cb.setChecked(False)
-        
-        self.show_button = QPushButton("&Show")
-        self.connect(self.show_button, SIGNAL('clicked()'), self.on_show)
+        self.tools.listView.setModel(self.series_list_model)      
+     
+        #Anzeigen-Knopf        
+        self.connect(self.tools.show_button, SIGNAL('clicked()'), self.on_show)
 
         left_vbox = QVBoxLayout()
         left_vbox.addWidget(self.canvas)
         left_vbox.addWidget(self.mpl_toolbar)
-
-        right_vbox = QVBoxLayout()
-        right_vbox.addWidget(log_label)
-        right_vbox.addWidget(self.series_list_view)
-        right_vbox.addLayout(spins_hbox)
-        right_vbox.addWidget(self.legend_cb)
-        right_vbox.addWidget(self.show_button)
-        right_vbox.addStretch(1)
         
         hbox = QHBoxLayout()
         hbox.addLayout(left_vbox)
-        hbox.addLayout(right_vbox)
-        hbox.addWidget(form)
+        hbox.addWidget(self.tools)
         self.main_frame.setLayout(hbox)
 
         self.setCentralWidget(self.main_frame)
@@ -251,11 +223,11 @@ class DataHolder(object):
         return self.data[name]
 
 
-def main():
-    app = QApplication(sys.argv)
-    form = Form()
-    form.show()
-    app.exec_()
+#def main():
+#    app = QApplication(sys.argv)
+#    form = Form()
+#    form.show()
+#    app.exec_()
 
 
 
