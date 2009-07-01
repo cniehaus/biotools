@@ -132,7 +132,7 @@ class Form(QMainWindow):
         form = WerkzeugForm()
 
         spins_hbox = QHBoxLayout()
-                spins_hbox.addWidget(spin_label1)
+        spins_hbox.addWidget(spin_label1)
         spins_hbox.addWidget(self.from_spin)
         spins_hbox.addWidget(spin_label2)
         spins_hbox.addWidget(self.to_spin)
