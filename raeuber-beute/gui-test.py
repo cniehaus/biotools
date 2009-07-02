@@ -18,7 +18,12 @@ from matplotlib.figure import Figure
 
 #===========================
 """
-Based on code written by AMit Kumar (Oct 01, 2006)
+Based on code written by Amit Kumar (Oct 01, 2006)
+
+The code was ported from Amit Kumars JAVA-code to Python 2.6 
+by Carsten Niehaus (cniehaus@kde.org) in 2009 and enhanced.
+
+It is licenced under the GPL v2+.
 
 a = Intrinsic rate of Prey Population Increase ;
 b = Predation Rate Coefficient ;
@@ -118,10 +123,10 @@ class Form(QMainWindow):
         self.on_show()
         
     def update_values(self):
-        self.data.simulator.setA( self.tools.a.value() )
-        self.data.simulator.setB( self.tools.b.value() )
-        self.data.simulator.setC( self.tools.c.value() )
-        self.data.simulator.setP( self.tools.p.value() )
+        self.data.simulator.a = self.tools.a.value() 
+        self.data.simulator.b = self.tools.b.value()
+        self.data.simulator.c = self.tools.c.value()
+        self.data.simulator.p = self.tools.p.value()
 
     def calculate_data(self):
         self.update_values()
@@ -157,23 +162,31 @@ class Form(QMainWindow):
         self.axes.clear()        
         self.axes.grid(True)
         
-        has_series = False
-        
-        for row in range(self.series_list_model.rowCount()):
-            model_index = self.series_list_model.index(row, 0)
-            checked = self.series_list_model.data(model_index,
-                Qt.CheckStateRole) == QVariant(Qt.Checked)
-            name = str(self.series_list_model.data(model_index).toString())
-            
-            if checked:
-                has_series = True
+
+        x_from = self.tools.from_spin.value()
+        x_to = self.tools.to_spin.value()
+        series_predator = self.data.get_series_data("R")[x_from:x_to + 1]
+        series_prey     = self.data.get_series_data("B")[x_from:x_to + 1]
+        self.axes.plot(range(len(series_predator)), series_predator, 'o-', label="Predator")
+        self.axes.plot(range(len(series_prey)), series_prey, 'o-', label="Beute")
                 
-                x_from = self.tools.from_spin.value()
-                x_to = self.tools.to_spin.value()
-                series = self.data.get_series_data(name)[x_from:x_to + 1]
-                self.axes.plot(range(len(series)), series, 'o-', label=name)
+        #has_series = False
         
-        if has_series and self.tools.legend_cb.isChecked():
+        #for row in range(self.series_list_model.rowCount()):
+            #model_index = self.series_list_model.index(row, 0)
+            #checked = self.series_list_model.data(model_index,
+                #Qt.CheckStateRole) == QVariant(Qt.Checked)
+            #name = str(self.series_list_model.data(model_index).toString())
+            
+            #if checked:
+                #has_series = True
+                
+                #x_from = self.tools.from_spin.value()
+                #x_to = self.tools.to_spin.value()
+                #series = self.data.get_series_data(name)[x_from:x_to + 1]
+                #self.axes.plot(range(len(series)), series, 'o-', label=name)
+        
+        if self.tools.legend_cb.isChecked():
             self.axes.legend()
         self.canvas.draw()
 
@@ -203,9 +216,7 @@ class Form(QMainWindow):
         
         self.axes = self.fig.add_subplot(111)
         self.mpl_toolbar = NavigationToolbar(self.canvas, self.main_frame)
-        
-        self.tools.listView.setModel(self.series_list_model)      
-     
+   
         self.connect(self.tools.show_button, SIGNAL('clicked()'), self.on_show)
         self.connect(self.tools.calculate_button, SIGNAL('clicked()'), self.calculate_data)
         
