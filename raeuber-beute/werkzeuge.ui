@@ -117,12 +117,18 @@
         <property name="text">
          <string>Startpopulation Räuber</string>
         </property>
+        <property name="buddy">
+         <cstring>Predator0</cstring>
+        </property>
        </widget>
       </item>
       <item row="5" column="0">
        <widget class="QLabel" name="label_9">
         <property name="text">
          <string>Startpopulation Beute</string>
+        </property>
+        <property name="buddy">
+         <cstring>Prey0</cstring>
         </property>
        </widget>
       </item>
@@ -166,12 +172,21 @@
         <property name="orientation">
          <enum>Qt::Horizontal</enum>
         </property>
+        <property name="tickPosition">
+         <enum>QSlider::TicksBelow</enum>
+        </property>
+        <property name="tickInterval">
+         <number>500</number>
+        </property>
        </widget>
       </item>
       <item row="6" column="0">
        <widget class="QLabel" name="label">
         <property name="text">
          <string>Durchläufe</string>
+        </property>
+        <property name="buddy">
+         <cstring>iterations_slider</cstring>
         </property>
        </widget>
       </item>
@@ -185,8 +200,8 @@
      </property>
      <property name="sizeHint" stdset="0">
       <size>
-       <width>20</width>
-       <height>284</height>
+       <width>138</width>
+       <height>308</height>
       </size>
      </property>
     </spacer>
@@ -226,21 +241,14 @@
      </layout>
     </widget>
    </item>
-   <item row="3" column="1">
-    <widget class="QPushButton" name="calculate_button">
-     <property name="text">
-      <string>Neu berechnen</string>
-     </property>
-    </widget>
-   </item>
-   <item row="4" column="0">
+   <item row="3" column="0">
     <widget class="QCheckBox" name="legend_cb">
      <property name="text">
       <string>Legende anzeigen</string>
      </property>
     </widget>
    </item>
-   <item row="4" column="1">
+   <item row="3" column="1">
     <spacer name="horizontalSpacer">
      <property name="orientation">
       <enum>Qt::Horizontal</enum>
@@ -253,7 +261,7 @@
      </property>
     </spacer>
    </item>
-   <item row="4" column="2">
+   <item row="3" column="2">
     <widget class="QPushButton" name="show_button">
      <property name="text">
       <string>&amp;Anzeigen</string>
@@ -271,12 +279,28 @@
    <slot>click()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>34</x>
-     <y>655</y>
+     <x>38</x>
+     <y>698</y>
     </hint>
     <hint type="destinationlabel">
-     <x>43</x>
-     <y>682</y>
+     <x>261</x>
+     <y>699</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>iterations_slider</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>to_spin</receiver>
+   <slot>setValue(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>231</x>
+     <y>232</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>239</x>
+     <y>655</y>
     </hint>
    </hints>
   </connection>
