@@ -7,7 +7,7 @@ Carsten Niehaus (ni@kgs-rastede.de)
 License: GPLv2+
 Last modified: Juni und Juli 2009
 """
-import sys, os, csv
+import sys, os
 from PyQt4.QtCore import *
 from PyQt4.QtGui import *
 
@@ -42,7 +42,6 @@ class Form(QMainWindow):
         self.create_main_frame()
         self.create_status_bar()
         
-        self.update_ui()
         self.on_show()
         
     def update_values(self):
@@ -61,7 +60,6 @@ class Form(QMainWindow):
     def calculate_data(self):
         self.update_values()
         self.data.calculate_from_values()
-        self.update_ui()
     
     def load_file(self, filename=None):
         if not filename:
@@ -71,19 +69,6 @@ class Form(QMainWindow):
         if filename:
             self.data.load_from_file(filename)
             self.status_text.setText("Loaded " + filename)
-            self.update_ui()
-    
-    def update_ui(self):
-        if self.data.series_count() > 0 and self.data.series_len() > 0:
-            #self.tools.from_spin.setValue(0)
-            #self.tools.to_spin.setValue(self.data.series_len() - 1)
-            
-            for w in [self.tools.from_spin, self.tools.to_spin]:
-                w.setRange(0, self.data.series_len() - 1)
-                w.setEnabled(True)
-        else:
-            for w in [self.tools.from_spin, self.tools.to_spin]:
-                w.setEnabled(False)
     
     def on_show(self):
         self.calculate_data()
@@ -92,8 +77,8 @@ class Form(QMainWindow):
         self.axes.grid(True)
         
 
-        x_from = self.tools.from_spin.value()
-        x_to = self.tools.to_spin.value()
+        x_from = 0
+        x_to = self.tools.iterations.value()
         series_predator = self.data.get_series_data("Predator")[x_from:x_to + 1]
         series_prey     = self.data.get_series_data("Prey")[x_from:x_to + 1]
         self.axes.plot(range(len(series_predator)), series_predator, 'o-', label="Predator")
@@ -122,9 +107,6 @@ class Form(QMainWindow):
         self.mpl_toolbar = NavigationToolbar(self.canvas, self.main_frame)
    
         self.connect(self.tools.show_button, SIGNAL('clicked()'), self.on_show)
-        
-        self.update_ui()
-
 
         left_vbox = QVBoxLayout()
         left_vbox.addWidget(self.canvas)
