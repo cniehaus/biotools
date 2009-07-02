@@ -37,8 +37,8 @@ class PredatorPreyCalculator(object):
     def __init__(self):
         self.a=1.0
         self.b=0.2
-        self.p=0.04
         self.c=0.5
+        self.p=0.04
         self.Prey0=5
         self.Predator0=2
         self.dt=0.01
@@ -127,6 +127,9 @@ class Form(QMainWindow):
         self.data.simulator.b = self.tools.b.value()
         self.data.simulator.c = self.tools.c.value()
         self.data.simulator.p = self.tools.p.value()
+        self.data.simulator.iterations = self.tools.iterations_slider.value()
+        self.data.simulator.Prey0 = self.tools.Prey0.value()
+        self.data.simulator.Predator0 = self.tools.Predator0.value()
 
     def calculate_data(self):
         self.update_values()
@@ -218,9 +221,8 @@ class Form(QMainWindow):
         self.mpl_toolbar = NavigationToolbar(self.canvas, self.main_frame)
    
         self.connect(self.tools.show_button, SIGNAL('clicked()'), self.on_show)
-        self.connect(self.tools.calculate_button, SIGNAL('clicked()'), self.calculate_data)
         
-        self.data.calculate_from_values()
+        #self.data.calculate_from_values()
         self.fill_series_list(self.data.series_names())
         self.update_ui()
 
