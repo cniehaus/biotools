@@ -7,7 +7,7 @@ Carsten Niehaus (ni@kgs-rastede.de)
 License: GPLv2+
 Last modified: Juni und Juli 2009
 """
-import sys, os
+import sys
 from PyQt4.QtCore import *
 from PyQt4.QtGui import *
 
