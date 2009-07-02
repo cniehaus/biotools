@@ -172,22 +172,6 @@ class Form(QMainWindow):
         series_prey     = self.data.get_series_data("B")[x_from:x_to + 1]
         self.axes.plot(range(len(series_predator)), series_predator, 'o-', label="Predator")
         self.axes.plot(range(len(series_prey)), series_prey, 'o-', label="Beute")
-                
-        #has_series = False
-        
-        #for row in range(self.series_list_model.rowCount()):
-            #model_index = self.series_list_model.index(row, 0)
-            #checked = self.series_list_model.data(model_index,
-                #Qt.CheckStateRole) == QVariant(Qt.Checked)
-            #name = str(self.series_list_model.data(model_index).toString())
-            
-            #if checked:
-                #has_series = True
-                
-                #x_from = self.tools.from_spin.value()
-                #x_to = self.tools.to_spin.value()
-                #series = self.data.get_series_data(name)[x_from:x_to + 1]
-                #self.axes.plot(range(len(series)), series, 'o-', label=name)
         
         if self.tools.legend_cb.isChecked():
             self.axes.legend()
@@ -222,7 +206,6 @@ class Form(QMainWindow):
    
         self.connect(self.tools.show_button, SIGNAL('clicked()'), self.on_show)
         
-        #self.data.calculate_from_values()
         self.fill_series_list(self.data.series_names())
         self.update_ui()
 
