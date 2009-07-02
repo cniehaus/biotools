@@ -52,8 +52,14 @@ class PredatorPreyCalculator(object):
         return self.p*x*y-self.c*y
         
     def calculate(self):
-        r_string = ["R"]
-        b_string = ["B"]
+        """
+        This method calculates the number of predators and prey after each timestep.
+        It returns two lists, one for prey, one of predator. An example would be:    
+        ['Predator', 5.0300000000000002, 5.0602403599999999, 5.0907228235971242]
+        ['Prey', 1.994, 1.9880419279999999, 1.9821257063605751 ]
+        """
+        r_string = ["Predator"]
+        b_string = ["Prey"]
         
         i = 0
         x = self.Prey0
@@ -73,8 +79,6 @@ class PredatorPreyCalculator(object):
             
             i += 1
         
-        
-            
         return r_string, b_string
 
 
@@ -149,10 +153,10 @@ class Form(QMainWindow):
 
         x_from = self.tools.from_spin.value()
         x_to = self.tools.to_spin.value()
-        series_predator = self.data.get_series_data("R")[x_from:x_to + 1]
-        series_prey     = self.data.get_series_data("B")[x_from:x_to + 1]
+        series_predator = self.data.get_series_data("Predator")[x_from:x_to + 1]
+        series_prey     = self.data.get_series_data("Prey")[x_from:x_to + 1]
         self.axes.plot(range(len(series_predator)), series_predator, 'o-', label="Predator")
-        self.axes.plot(range(len(series_prey)), series_prey, 'o-', label="Beute")
+        self.axes.plot(range(len(series_prey)), series_prey, 'o-', label="Prey")
         
         if self.tools.legend_cb.isChecked():
             self.axes.legend()
@@ -265,12 +269,14 @@ class DataHolder(object):
     
     def calculate_from_values(self):
         self.data = {}
-        self.names = ["R", "B"]
+        self.names = ["Predator", "Prey"]
                        
         r, b = self.simulator.calculate()
+        print r
+        print b
         
-        self.data["R"] = map(float, r[1:])
-        self.data["B"] = map(float, b[1:])
+        self.data["Predator"] = map(float, r[1:])
+        self.data["Prey"] = map(float, b[1:])
         self.datalen = len(r[1:])
        
         
@@ -278,7 +284,7 @@ class DataHolder(object):
     
     def load_from_file(self, filename=None):
         self.data = {}
-        self.names = ["R", "B"]
+        self.names = ["Predator", "Prey"]
         
         if filename:
             for line in csv.reader(open(filename, 'rb')):
