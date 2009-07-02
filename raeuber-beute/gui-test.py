@@ -16,72 +16,8 @@ from matplotlib.backends.backend_qt4agg import FigureCanvasQTAgg as FigureCanvas
 from matplotlib.backends.backend_qt4agg import NavigationToolbar2QTAgg as NavigationToolbar
 from matplotlib.figure import Figure
 
-#===========================
-"""
-Based on code written by Amit Kumar (Oct 01, 2006)
-
-The code was ported from Amit Kumars JAVA-code to Python 2.6 
-by Carsten Niehaus (cniehaus@kde.org) in 2009 and enhanced.
-
-It is licenced under the GPL v2+.
-
-a = Intrinsic rate of Prey Population Increase ;
-b = Predation Rate Coefficient ;
-p = Reproduction rate of Predators ( after eating preys );
-c = Death Rate of Predators ;
-Prey0 = Initial Prey Population ;
-Predator0 = Initial Predator Population;
-dt = Time Step;
-"""
-class PredatorPreyCalculator(object):
-    def __init__(self):
-        self.a=1.0
-        self.b=0.2
-        self.c=0.5
-        self.p=0.04
-        self.Prey0=5
-        self.Predator0=2
-        self.dt=0.01
-        self.tstart=0.0
-        self.iterations=5000  
-    
-    def dx(self, x,y):
-        return self.a*x-self.b*x*y
-
-    def dy(self, x,y):
-        return self.p*x*y-self.c*y
-        
-    def calculate(self):
-        """
-        This method calculates the number of predators and prey after each timestep.
-        It returns two lists, one for prey, one of predator. An example would be:    
-        ['Predator', 5.0300000000000002, 5.0602403599999999, 5.0907228235971242]
-        ['Prey', 1.994, 1.9880419279999999, 1.9821257063605751 ]
-        """
-        r_string = ["Predator"]
-        b_string = ["Prey"]
-        
-        i = 0
-        x = self.Prey0
-        y = self.Predator0
-        t = self.tstart
-    
-        while i < self.iterations:
-            t = i * self.dt
-            xnew = x + self.dx(x,y) * self.dt
-            ynew = y + self.dy(x,y) * self.dt
-            
-            x = xnew
-            y = ynew
-            
-            r_string.append(x)
-            b_string.append(y)
-            
-            i += 1
-        
-        return r_string, b_string
-
-
+from dataholder import *
+from predatorpreycalculator import *
 
 #==============================
 from ui_werkzeuge import Ui_WerkzeugForm
@@ -112,7 +48,7 @@ class Form(QMainWindow):
         self.data.simulator.b = self.tools.b.value()
         self.data.simulator.c = self.tools.c.value()
         self.data.simulator.p = self.tools.p.value()
-        self.data.simulator.iterations = self.tools.iterations_slider.value()
+        self.data.simulator.iterations = self.tools.iterations.value()
         self.data.simulator.Prey0 = self.tools.Prey0.value()
         self.data.simulator.Predator0 = self.tools.Predator0.value()
 
@@ -252,61 +188,6 @@ class Form(QMainWindow):
             action.setCheckable(True)
         return action
 
-
-class DataHolder(object):
-    """ Just a thin wrapper over a dictionary that holds integer 
-        data series. Each series has a name and a list of numbers 
-        as its data. The length of all series is assumed to be
-        the same.
-        
-        The series can be read from a CSV file, where each line
-        is a separate series. In each series, the first item in 
-        the line is the name, and the rest are data numbers.
-    """
-    def __init__(self, filename=None):
-        self.load_from_file(filename)
-        self.simulator = PredatorPreyCalculator()
-    
-    def calculate_from_values(self):
-        self.data = {}
-        self.names = ["Predator", "Prey"]
-                       
-        r, b = self.simulator.calculate()
-        print r
-        print b
-        
-        self.data["Predator"] = map(float, r[1:])
-        self.data["Prey"] = map(float, b[1:])
-        self.datalen = len(r[1:])
-       
-        
-        
-    
-    def load_from_file(self, filename=None):
-        self.data = {}
-        self.names = ["Predator", "Prey"]
-        
-        if filename:
-            for line in csv.reader(open(filename, 'rb')):
-                self.data[line[0]] = map(float, line[1:])
-                self.datalen = len(line[1:])
-    
-    def series_names(self):
-        """ Names of the data series
-        """
-        return self.names
-    
-    def series_len(self):
-        """ Length of a data series
-        """
-        return self.datalen
-    
-    def series_count(self):
-        return len(self.data)
-
-    def get_series_data(self, name):
-        return self.data[name]
-
 if __name__ == "__main__":
     import sys
 
@@ -314,6 +195,8 @@ if __name__ == "__main__":
     
     f = Form()
     f.show()
+    
+    #if an argument was given open that file on startup.
     if len(sys.argv) > 1:
         f.load_file(sys.argv[1])
     app.exec_()
