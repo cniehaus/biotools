@@ -28,7 +28,7 @@ class WerkzeugForm(QDialog, Ui_WerkzeugForm):
     def __init__(self, parent=None):
         super(WerkzeugForm, self).__init__(parent)
         self.setupUi(self)
-
+        
 class Form(QMainWindow):
     """This class is the application itself
     """
@@ -98,6 +98,12 @@ class Form(QMainWindow):
         plot_frame = QWidget()
         self.tools = WerkzeugForm()
         
+        dock = QDockWidget("Tools", self)
+        dock.setObjectName("ToolsDockWidget")
+        dock.setAllowedAreas(Qt.LeftDockWidgetArea|Qt.RightDockWidgetArea)
+        dock.setWidget(self.tools)
+        self.addDockWidget(Qt.RightDockWidgetArea, dock)
+        
         self.dpi = 100
         self.fig = Figure((6.0, 4.0), dpi=self.dpi)
         self.canvas = FigureCanvas(self.fig)
@@ -114,13 +120,13 @@ class Form(QMainWindow):
         
         hbox = QHBoxLayout()
         hbox.addLayout(left_vbox)
-        hbox.addWidget(self.tools)
+        #hbox.addWidget(self.tools)
         self.main_frame.setLayout(hbox)
 
         self.setCentralWidget(self.main_frame)
     
     def create_status_bar(self):
-        self.status_text = QLabel("Please load a data file")
+        self.status_text = QLabel("Predator and Prey Simulation")
         self.statusBar().addWidget(self.status_text, 1)
 
     def create_menu(self):        
