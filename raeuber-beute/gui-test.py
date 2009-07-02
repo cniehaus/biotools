@@ -43,27 +43,8 @@ class PredatorPreyCalculator(object):
         self.Predator0=2
         self.dt=0.01
         self.tstart=0.0
-        self.iterations=5000
+        self.iterations=5000  
     
-    def setA(self, a):
-        print "Setze a auf " + str(a)
-        self.a = a
-        
-    def setB(self, b):
-        self.b = b
-        
-    def setC(self, c):
-        self.c = c
-
-    def setP(self, p):
-        self.p = p
-
-    def setPrey0(self, p):
-        self.Prey0 = p
-
-    def setPredator0(self, p):
-        self.Predator0 = p
-
     def dx(self, x,y):
         return self.a*x-self.b*x*y
 
