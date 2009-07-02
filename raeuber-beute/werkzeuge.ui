@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>310</width>
-    <height>704</height>
+    <width>311</width>
+    <height>781</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -122,16 +122,6 @@
         </property>
        </widget>
       </item>
-      <item row="5" column="0">
-       <widget class="QLabel" name="label_9">
-        <property name="text">
-         <string>Startpopulation Beute</string>
-        </property>
-        <property name="buddy">
-         <cstring>Prey0</cstring>
-        </property>
-       </widget>
-      </item>
       <item row="4" column="1">
        <widget class="QSpinBox" name="Predator0">
         <property name="maximum">
@@ -139,6 +129,16 @@
         </property>
         <property name="value">
          <number>2</number>
+        </property>
+       </widget>
+      </item>
+      <item row="5" column="0">
+       <widget class="QLabel" name="label_9">
+        <property name="text">
+         <string>Startpopulation Beute</string>
+        </property>
+        <property name="buddy">
+         <cstring>Prey0</cstring>
         </property>
        </widget>
       </item>
@@ -152,8 +152,18 @@
         </property>
        </widget>
       </item>
+      <item row="6" column="0">
+       <widget class="QLabel" name="label">
+        <property name="text">
+         <string>Durchläufe</string>
+        </property>
+        <property name="buddy">
+         <cstring>iterations</cstring>
+        </property>
+       </widget>
+      </item>
       <item row="6" column="1">
-       <widget class="QSlider" name="iterations_slider">
+       <widget class="QSpinBox" name="iterations">
         <property name="minimum">
          <number>50</number>
         </property>
@@ -163,30 +173,8 @@
         <property name="singleStep">
          <number>50</number>
         </property>
-        <property name="pageStep">
-         <number>50</number>
-        </property>
         <property name="value">
          <number>5000</number>
-        </property>
-        <property name="orientation">
-         <enum>Qt::Horizontal</enum>
-        </property>
-        <property name="tickPosition">
-         <enum>QSlider::TicksBelow</enum>
-        </property>
-        <property name="tickInterval">
-         <number>500</number>
-        </property>
-       </widget>
-      </item>
-      <item row="6" column="0">
-       <widget class="QLabel" name="label">
-        <property name="text">
-         <string>Durchläufe</string>
-        </property>
-        <property name="buddy">
-         <cstring>iterations_slider</cstring>
         </property>
        </widget>
       </item>
@@ -201,7 +189,7 @@
      <property name="sizeHint" stdset="0">
       <size>
        <width>138</width>
-       <height>308</height>
+       <height>387</height>
       </size>
      </property>
     </spacer>
@@ -236,7 +224,14 @@
        </widget>
       </item>
       <item row="1" column="1">
-       <widget class="QSpinBox" name="to_spin"/>
+       <widget class="QSpinBox" name="to_spin">
+        <property name="maximum">
+         <number>20000</number>
+        </property>
+        <property name="value">
+         <number>5000</number>
+        </property>
+       </widget>
       </item>
      </layout>
     </widget>
@@ -280,27 +275,27 @@
    <hints>
     <hint type="sourcelabel">
      <x>38</x>
-     <y>698</y>
+     <y>753</y>
     </hint>
     <hint type="destinationlabel">
-     <x>261</x>
-     <y>699</y>
+     <x>262</x>
+     <y>752</y>
     </hint>
    </hints>
   </connection>
   <connection>
-   <sender>iterations_slider</sender>
+   <sender>iterations</sender>
    <signal>valueChanged(int)</signal>
    <receiver>to_spin</receiver>
    <slot>setValue(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>231</x>
-     <y>232</y>
+     <x>243</x>
+     <y>230</y>
     </hint>
     <hint type="destinationlabel">
-     <x>239</x>
-     <y>655</y>
+     <x>208</x>
+     <y>726</y>
     </hint>
    </hints>
   </connection>
