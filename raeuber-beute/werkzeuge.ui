@@ -228,6 +228,9 @@
         <property name="maximum">
          <number>20000</number>
         </property>
+        <property name="singleStep">
+         <number>50</number>
+        </property>
         <property name="value">
          <number>5000</number>
         </property>
@@ -280,22 +283,6 @@
     <hint type="destinationlabel">
      <x>262</x>
      <y>752</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>iterations</sender>
-   <signal>valueChanged(int)</signal>
-   <receiver>to_spin</receiver>
-   <slot>setValue(int)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>243</x>
-     <y>230</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>208</x>
-     <y>726</y>
     </hint>
    </hints>
   </connection>

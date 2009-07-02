@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from predatorpreycalculator import *
+
 class DataHolder(object):
     """ Just a thin wrapper over a dictionary that holds integer 
         data series. Each series has a name and a list of numbers 
@@ -19,8 +20,6 @@ class DataHolder(object):
         self.names = ["Predator", "Prey"]
                        
         r, b = self.simulator.calculate()
-        print r
-        print b
         
         self.data["Predator"] = map(float, r[1:])
         self.data["Prey"] = map(float, b[1:])

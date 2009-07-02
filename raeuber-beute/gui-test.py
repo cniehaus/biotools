@@ -19,22 +19,24 @@ from matplotlib.figure import Figure
 from dataholder import *
 from predatorpreycalculator import *
 
-#==============================
 from ui_werkzeuge import Ui_WerkzeugForm
 
 class WerkzeugForm(QDialog, Ui_WerkzeugForm):
-	def __init__(self, parent=None):
-		super(WerkzeugForm, self).__init__(parent)
-		self.setupUi(self)
-#==============================
+    """This class is the widget in which the user can setup 
+    every aspect of the simulation.
+    """
+    def __init__(self, parent=None):
+        super(WerkzeugForm, self).__init__(parent)
+        self.setupUi(self)
 
 class Form(QMainWindow):
+    """This class is the application itself
+    """
     def __init__(self, parent=None):
         super(Form, self).__init__(parent)
         self.setWindowTitle(u"Räuber und Beute Beziehungen")
 
         self.data = DataHolder()
-        self.series_list_model = QStandardItemModel()
         
         self.create_menu()
         self.create_main_frame()
@@ -44,6 +46,10 @@ class Form(QMainWindow):
         self.on_show()
         
     def update_values(self):
+        """In the GUI the user is able to change several settings of
+        the simulation. This method sets those values in the simulator-
+        class
+        """
         self.data.simulator.a = self.tools.a.value() 
         self.data.simulator.b = self.tools.b.value()
         self.data.simulator.c = self.tools.c.value()
@@ -64,14 +70,13 @@ class Form(QMainWindow):
         
         if filename:
             self.data.load_from_file(filename)
-            self.fill_series_list(self.data.series_names())
             self.status_text.setText("Loaded " + filename)
             self.update_ui()
     
     def update_ui(self):
         if self.data.series_count() > 0 and self.data.series_len() > 0:
-            self.tools.from_spin.setValue(0)
-            self.tools.to_spin.setValue(self.data.series_len() - 1)
+            #self.tools.from_spin.setValue(0)
+            #self.tools.to_spin.setValue(self.data.series_len() - 1)
             
             for w in [self.tools.from_spin, self.tools.to_spin]:
                 w.setRange(0, self.data.series_len() - 1)
@@ -101,16 +106,7 @@ class Form(QMainWindow):
     def on_about(self):
         msg = __doc__
         QMessageBox.about(self, u"Über Räuber-Beute", msg.strip())
-
-    def fill_series_list(self, names):
-        self.series_list_model.clear()
-        
-        for name in names:
-            item = QStandardItem(name)
-            item.setCheckState(Qt.Unchecked)
-            item.setCheckable(True)
-            self.series_list_model.appendRow(item)
-    
+  
     def create_main_frame(self):
         self.main_frame = QWidget()
         
@@ -127,7 +123,6 @@ class Form(QMainWindow):
    
         self.connect(self.tools.show_button, SIGNAL('clicked()'), self.on_show)
         
-        self.fill_series_list(self.data.series_names())
         self.update_ui()
 
 
