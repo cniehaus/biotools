@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 from predatorpreycalculator import *
-import csv
 
 class DataHolder(object):
     """ Just a thin wrapper over a dictionary that holds integer 
@@ -12,8 +11,7 @@ class DataHolder(object):
         is a separate series. In each series, the first item in 
         the line is the name, and the rest are data numbers.
     """
-    def __init__(self, filename=None):
-        self.load_from_file(filename)
+    def __init__(self):
         self.simulator = PredatorPreyCalculator()
     
     def calculate_from_values(self):
@@ -25,15 +23,6 @@ class DataHolder(object):
         self.data["Predator"] = map(float, r[1:])
         self.data["Prey"] = map(float, b[1:])
         self.datalen = len(r[1:])       
-    
-    def load_from_file(self, filename=None):
-        self.data = {}
-        self.names = ["Predator", "Prey"]
-        
-        if filename:
-            for line in csv.reader(open(filename, 'rb')):
-                self.data[line[0]] = map(float, line[1:])
-                self.datalen = len(line[1:])
     
     def series_names(self):
         """ Names of the data series

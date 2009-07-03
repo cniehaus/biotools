@@ -37,7 +37,7 @@ class Form(QMainWindow):
     """
     def __init__(self, parent=None):
         super(Form, self).__init__(parent)
-        self.setWindowTitle(u"Räuber und Beute Beziehungen")
+        self.setWindowTitle("Predator-Prey-Simulation")
 
         self.data = DataHolder()
         
@@ -63,15 +63,6 @@ class Form(QMainWindow):
     def calculate_data(self):
         self.update_values()
         self.data.calculate_from_values()
-    
-    def load_file(self, filename=None):
-        if not filename:
-            filename = QFileDialog.getOpenFileName(self, 
-                   'Open a data file', '.', 'CSV files (*.csv);;All Files (*.*)')
-        
-        if filename:
-            self.data.load_from_file(filename)
-            self.status_text.setText("Loaded " + filename)
     
     def on_show(self):
         self.calculate_data()
@@ -146,28 +137,16 @@ class Form(QMainWindow):
 
     def create_menu(self):        
         self.file_menu = self.menuBar().addMenu("&File")
-        
-        load_action = self.create_action("&Load file",
-            shortcut="Ctrl+L", slot=self.load_file, tip="Load a file")
+
         quit_action = self.create_action("&Quit", slot=self.close, 
             shortcut="Ctrl+Q", tip="Close the application")
         
-        self.add_actions(self.file_menu, 
-            (load_action, None, quit_action))
+        
             
         self.help_menu = self.menuBar().addMenu("&Help")
         about_action = self.create_action("&About", 
             shortcut='F1', slot=self.on_about, 
             tip='About the demo')
-        
-        self.add_actions(self.help_menu, (about_action,))
-
-    def add_actions(self, target, actions):
-        for action in actions:
-            if action is None:
-                target.addSeparator()
-            else:
-                target.addAction(action)
 
     def create_action(  self, text, slot=None, shortcut=None, 
                         icon=None, tip=None, checkable=False, 
@@ -193,10 +172,7 @@ if __name__ == "__main__":
     
     f = Form()
     f.show()
-    
-    #if an argument was given open that file on startup.
-    if len(sys.argv) > 1:
-        f.load_file(sys.argv[1])
+
     app.exec_()
 
     
