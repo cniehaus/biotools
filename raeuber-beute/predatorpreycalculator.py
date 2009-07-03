@@ -10,10 +10,11 @@ It is licenced under the GPL v2+.
 
 class PredatorPreyCalculator(object):
     """
-    a = Intrinsic rate of Prey Population Increase ;
-    b = Predation Rate Coefficient ;
-    p = Reproduction rate of Predators ( after eating preys );
-    c = Death Rate of Predators ;
+    a = Natural Growing Rate of prey, when there are no predators
+    b = Natural Dying Rate of prey(due to predation)
+    c = Natural Dying Rate of Predators, when there is no prey
+    p = Reproduction rate of Predators (after eating preys, how
+        many caught rabbits let create on new predator)
     Prey0 = Initial Prey Population ;
     Predator0 = Initial Predator Population;
     dt = Time Step;
