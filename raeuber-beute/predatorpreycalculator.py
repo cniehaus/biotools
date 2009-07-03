@@ -52,11 +52,27 @@ class PredatorPreyCalculator(object):
     
         while i < self.iterations:
             t = i * self.dt
-            xnew = x + self.dx(x,y) * self.dt
-            ynew = y + self.dy(x,y) * self.dt
             
-            x = xnew
-            y = ynew
+            #One way to integrate would be the Euler-Method,
+            #but that would lead to a growth of both populations
+            #as with each step the error would be quite big. The 
+            #following four lines show the Eurler-integration for
+            #educational puposes:
+            
+            #xnew = x + self.dx(x,y) * self.dt
+            #ynew = y + self.dy(x,y) * self.dt
+            #x = xnew
+            #y = ynew
+            
+            #Using an Runga-Kutta 2nd order integrator, c.f.
+            #http://mathworld.wolfram.com/Runge-KuttaMethod.html
+            xk_1 = self.dx(x,y) * self.dt
+            yk_1 = self.dy(x,y) * self.dt
+            xk_2 = self.dt * self.dx(x+xk_1,y+yk_1)
+            yk_2 = self.dt * self.dy(x+xk_1,y+yk_1)
+            
+            x = x + (xk_1 + xk_2)/2
+            y = y + (yk_1 + yk_2)/2
             
             r_string.append(x)
             b_string.append(y)
@@ -64,5 +80,7 @@ class PredatorPreyCalculator(object):
             i += 1
         
         return r_string, b_string
+
+
 
 
