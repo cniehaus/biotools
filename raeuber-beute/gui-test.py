@@ -40,8 +40,7 @@ class Form(QMainWindow):
         self.setWindowTitle("Predator-Prey-Simulation")
 
         self.data = DataHolder()
-        
-        self.create_menu()
+
         self.create_main_frame()
         self.create_status_bar()
         
@@ -134,19 +133,6 @@ class Form(QMainWindow):
     def create_status_bar(self):
         self.status_text = QLabel("Predator and Prey Simulation")
         self.statusBar().addWidget(self.status_text, 1)
-
-    def create_menu(self):        
-        self.file_menu = self.menuBar().addMenu("&File")
-
-        quit_action = self.create_action("&Quit", slot=self.close, 
-            shortcut="Ctrl+Q", tip="Close the application")
-        
-        
-            
-        self.help_menu = self.menuBar().addMenu("&Help")
-        about_action = self.create_action("&About", 
-            shortcut='F1', slot=self.on_about, 
-            tip='About the demo')
 
     def create_action(  self, text, slot=None, shortcut=None, 
                         icon=None, tip=None, checkable=False, 
