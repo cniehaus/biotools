@@ -31,6 +31,9 @@ class WerkzeugForm(QDialog, Ui_WerkzeugForm):
         
 class Form(QMainWindow):
     """This class is the application itself
+    
+    A very good tutorial about all this can be found here:
+    http://www.scipy.org/LoktaVolterraTutorial
     """
     def __init__(self, parent=None):
         super(Form, self).__init__(parent)
@@ -83,11 +86,12 @@ class Form(QMainWindow):
         series_predator = self.data.get_series_data("Predator")[x_from:x_to + 1]
         series_prey     = self.data.get_series_data("Prey")[x_from:x_to + 1]
         
-        predator_length = range(len(series_predator))
-        prey_length = range(len(series_prey))
+        #These seems not needed at all...
+        #predator_length = range(len(series_predator))
+        #prey_length = range(len(series_prey))
         
-        self.axes.plot(predator_length, series_predator, '-', label="Predator")
-        self.axes.plot(prey_length, series_prey, '-', label="Prey")
+        self.axes.plot(series_predator, '-', label="Predator")
+        self.axes.plot(series_prey, '-', label="Prey")
         
         #The following lines create a nice annotation box, can be used lated to
         #highlight certain aspects of the plot
