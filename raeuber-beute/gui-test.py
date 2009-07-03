@@ -81,8 +81,8 @@ class Form(QMainWindow):
         x_to = self.tools.iterations.value()
         series_predator = self.data.get_series_data("Predator")[x_from:x_to + 1]
         series_prey     = self.data.get_series_data("Prey")[x_from:x_to + 1]
-        self.axes.plot(range(len(series_predator)), series_predator, 'o-', label="Predator")
-        self.axes.plot(range(len(series_prey)), series_prey, 'o-', label="Prey")
+        self.axes.plot(range(len(series_predator)), series_predator, '-', label="Predator")
+        self.axes.plot(range(len(series_prey)), series_prey, '-', label="Prey")
         
         if self.tools.legend_cb.isChecked():
             self.axes.legend()
