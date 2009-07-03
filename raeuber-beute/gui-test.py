@@ -91,13 +91,15 @@ class Form(QMainWindow):
         #                   arrowprops=dict(arrowstyle="->", 
         #                                   connectionstyle="angle,angleA=0,angleB=-90,rad=10"))
         
+        self.canvas.draw()
+        
+    def toggle_legend(self):
+        """Draw the legend when user wants it
+        """
         if self.tools.legend_cb.isChecked():
             self.axes.legend()
+            
         self.canvas.draw()
-
-    def on_about(self):
-        msg = __doc__
-        QMessageBox.about(self, u"Über Räuber-Beute", msg.strip())
   
     def create_main_frame(self):
         self.main_frame = QWidget()
@@ -119,6 +121,7 @@ class Form(QMainWindow):
         self.mpl_toolbar = NavigationToolbar(self.canvas, self.main_frame)
    
         self.connect(self.tools.show_button, SIGNAL('clicked()'), self.on_show)
+        self.connect(self.tools.legend_cb, SIGNAL('clicked()'), self.toggle_legend)
 
         left_vbox = QVBoxLayout()
         left_vbox.addWidget(self.canvas)
