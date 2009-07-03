@@ -11,7 +11,7 @@ import sys
 from PyQt4.QtCore import *
 from PyQt4.QtGui import *
 
-import matplotlib
+import matplotlib.pyplot as plt
 from matplotlib.backends.backend_qt4agg import FigureCanvasQTAgg as FigureCanvas
 from matplotlib.backends.backend_qt4agg import NavigationToolbar2QTAgg as NavigationToolbar
 from matplotlib.figure import Figure
@@ -75,14 +75,27 @@ class Form(QMainWindow):
         
         self.axes.clear()        
         self.axes.grid(True)
-        
+        self.axes.set_xlabel("Iterations")
+        self.axes.set_ylabel("Populationsize")
 
         x_from = 0
         x_to = self.tools.iterations.value()
         series_predator = self.data.get_series_data("Predator")[x_from:x_to + 1]
         series_prey     = self.data.get_series_data("Prey")[x_from:x_to + 1]
-        self.axes.plot(range(len(series_predator)), series_predator, '-', label="Predator")
-        self.axes.plot(range(len(series_prey)), series_prey, '-', label="Prey")
+        
+        predator_length = range(len(series_predator))
+        prey_length = range(len(series_prey))
+        
+        self.axes.plot(predator_length, series_predator, '-', label="Predator")
+        self.axes.plot(prey_length, series_prey, '-', label="Prey")
+        
+        #The following lines create a nice annotation box, can be used lated to
+        #highlight certain aspects of the plot
+        #self.axes.annotate('Test123', xy=(1000, 25), size=20, xycoords='data', textcoords='offset points',
+        #                   bbox=dict(boxstyle="round4,pad=.5", fc="0.8" ), 
+        #                   xytext=(-70, -60),
+        #                   arrowprops=dict(arrowstyle="->", 
+        #                                   connectionstyle="angle,angleA=0,angleB=-90,rad=10"))
         
         if self.tools.legend_cb.isChecked():
             self.axes.legend()
