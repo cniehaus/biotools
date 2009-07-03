@@ -104,8 +104,7 @@ class Form(QMainWindow):
         dock.setWidget(self.tools)
         self.addDockWidget(Qt.RightDockWidgetArea, dock)
         
-        self.dpi = 100
-        self.fig = Figure((6.0, 4.0), dpi=self.dpi)
+        self.fig = Figure()
         self.canvas = FigureCanvas(self.fig)
         self.canvas.setParent(self.main_frame)
         
@@ -120,7 +119,6 @@ class Form(QMainWindow):
         
         hbox = QHBoxLayout()
         hbox.addLayout(left_vbox)
-        #hbox.addWidget(self.tools)
         self.main_frame.setLayout(hbox)
 
         self.setCentralWidget(self.main_frame)
