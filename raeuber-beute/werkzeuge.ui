@@ -35,7 +35,7 @@
       <item row="0" column="0">
        <widget class="QLabel" name="label_4">
         <property name="text">
-         <string>Fortpflanzungsrate Räuber</string>
+         <string>Natural Growing Rate (Predator)</string>
         </property>
         <property name="buddy">
          <cstring>a</cstring>
@@ -58,7 +58,7 @@
       <item row="1" column="0">
        <widget class="QLabel" name="label_5">
         <property name="text">
-         <string>Raubrate (Koeffizient)</string>
+         <string>Natural Dying Rate (Prey)</string>
         </property>
         <property name="buddy">
          <cstring>b</cstring>
@@ -81,7 +81,7 @@
       <item row="2" column="0">
        <widget class="QLabel" name="label_6">
         <property name="text">
-         <string>Reproduktionsrate (Beute)</string>
+         <string>Natural Dying Rate (Predator)</string>
         </property>
         <property name="buddy">
          <cstring>p</cstring>
@@ -104,7 +104,7 @@
       <item row="3" column="0">
        <widget class="QLabel" name="label_7">
         <property name="text">
-         <string>Sterberate (Räuber)</string>
+         <string>Reproductions factor</string>
         </property>
         <property name="buddy">
          <cstring>c</cstring>
@@ -127,7 +127,7 @@
       <item row="4" column="0">
        <widget class="QLabel" name="label_8">
         <property name="text">
-         <string>Startpopulation Räuber</string>
+         <string>Startpopulation Predator</string>
         </property>
         <property name="buddy">
          <cstring>Predator0</cstring>
@@ -147,7 +147,7 @@
       <item row="5" column="0">
        <widget class="QLabel" name="label_9">
         <property name="text">
-         <string>Startpopulation Beute</string>
+         <string>Startpopulation Prey</string>
         </property>
         <property name="buddy">
          <cstring>Prey0</cstring>
