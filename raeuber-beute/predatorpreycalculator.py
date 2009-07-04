@@ -75,6 +75,12 @@ class PredatorPreyCalculator(object):
         while i < self.iterations:
             t = i * self.dt
             
+            if i == 1200:
+                y = 1
+                
+            if i == 7700:
+                x = 1
+            
             #One way to integrate would be the Euler-Method,
             #but that would lead to a growth of both populations
             #as with each step the error would be quite big. The 
